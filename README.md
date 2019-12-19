@@ -1,4 +1,5 @@
 # PackAnimal
+THIS IS TO PRACTICE GIT WORKFLOW!!!
 
 ## Who We Are
 Irene Tokareva - GitHub manager, backend, documentation, DB
