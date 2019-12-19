@@ -14,8 +14,8 @@ You’ve got your suitcase open on your bed, your packing list scribbled on a no
 We tie up all those loose ends in a single platform that houses everything you’ll need to make your next trip a success—from suggesting activities to providing up to date weather information and a home for your all-in-one packing list. 
 
 ## How We Do It
-HTML/CSS/JavaScript/Materialize
-Python/Django/Postgresql
-Heroku
-Google Places API
-DarkSky API
+* HTML/CSS/JavaScript/Materialize
+* Python/Django/Postgresql
+* Heroku
+* Google Places API
+* DarkSky API
