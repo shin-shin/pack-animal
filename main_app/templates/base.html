@@ -13,15 +13,31 @@
 </head>
 <body>
   <nav class="teal lighten-2" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">PackAnimal</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">PackAnimal</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'about' %}">Add a Toy</a></li>
+        <li><a href="{% url 'about' %}">View All Toys</a></li>
+        <li><a href="{% url 'about' %}">Add a Cat</a></li>
+        <li><a href="{% url 'about' %}">View All My Cats</a></li>
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Log In</a></li>
+        {% endif %}
       </ul>
       
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'about' %}">Add a Toy</a></li>
+        <li><a href="{% url 'about' %}">View All Toys</a></li>
+        <li><a href="{% url 'about' %}">Add a Cat</a></li>
+        <li><a href="{% url 'about' %}">View All My Cats</a></li>
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Log In</a></li>
+        {% endif %}
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
