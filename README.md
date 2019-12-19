@@ -1,5 +1,4 @@
 # PackAnimal
-#### When trip planning gets wild
 
 ## Who We Are
 Irene Tokareva - GitHub manager, backend, documentation, DB
