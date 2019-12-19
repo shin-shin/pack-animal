@@ -17,10 +17,8 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="{% url 'about' %}">About</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'about' %}">Add a Toy</a></li>
-        <li><a href="{% url 'about' %}">View All Toys</a></li>
-        <li><a href="{% url 'about' %}">Add a Cat</a></li>
-        <li><a href="{% url 'about' %}">View All My Cats</a></li>
+        <li><a href="{% url 'about' %}">Add a Destination</a></li>
+        <li><a href="{% url 'about' %}">My Destinations</a></li>
         <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
         <li><a href="{% url 'login' %}">Log In</a></li>
@@ -30,10 +28,8 @@
       <ul id="nav-mobile" class="sidenav">
         <li><a href="{% url 'about' %}">About</a></li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'about' %}">Add a Toy</a></li>
-        <li><a href="{% url 'about' %}">View All Toys</a></li>
-        <li><a href="{% url 'about' %}">Add a Cat</a></li>
-        <li><a href="{% url 'about' %}">View All My Cats</a></li>
+        <li><a href="{% url 'about' %}">Add a Destination</a></li>
+        <li><a href="{% url 'about' %}">My Destinations</a></li>
         <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
         <li><a href="{% url 'login' %}">Log In</a></li>
@@ -61,8 +57,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
 
   </body>
 </html>
