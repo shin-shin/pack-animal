@@ -1,9 +1,9 @@
 # PackAnimal
 
 ## Who We Are
-Irene Tokareva - GitHub manager, backend, documentation, DB
-Julia Galan - frontend, wireframes, Trello, documentation
-Mattew Sartain - backend, documentation, Design, DOM/JS
+* Irene Tokareva - GitHub manager, backend, documentation, DB
+* Julia Galan - frontend, wireframes, Trello, documentation
+* Mattew Sartain - backend, documentation, Design, DOM/JS
 
 ## What We Do
 ### The Problem
