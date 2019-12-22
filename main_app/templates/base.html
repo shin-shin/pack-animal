@@ -12,7 +12,7 @@
   <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-
+<body>
   <header>
   <nav class="color" role="navigation">
     <div class="container">
@@ -28,13 +28,12 @@
         <li><a href="{% url 'login' %}">Log In</a></li>
         {% endif %}
       </ul>
-    </header>
   </nav>
-  <body>
+</header>
   <main>
   <div class="container">
     {% block content %}
-    <h2>Hello World</h2>
+    <h2>Hello World!</h2>
 
     {% endblock %}
     <br><br>
