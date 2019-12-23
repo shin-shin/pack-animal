@@ -2,6 +2,9 @@ from django.db import models
 from django.urls import reverse
 from datetime import date, timedelta
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 # Create your models here.
 
 class Destination(models.Model):
@@ -16,19 +19,6 @@ class Destination(models.Model):
     
     def get_absolute_url(self):
         return reverse('destination', kwargs={'destination_id': self.id})
-
-    # def daterange(self, start_date, end_date):
-        
-        # destination = Destination.objects.get(id=destination_id)
-        # destination.save()
-
-        # start_date = destination.start_date
-        # end_date = destination.end_date
-
-        # delta = end_date - start_date
-        # for i in range(delta.days + 1):
-        #     day = Day(date=start_date + timedelta(days=i), destination_id=destination_id)
-        #     day.save()
 
     class Meta:
         ordering = ['-start_date']
@@ -55,4 +45,15 @@ class Item(models.Model):
     def __str__(self):
         return f'{self.name} for a trip to {self.destination}'
 
-   
+
+@receiver(post_save, sender=Destination)
+def post_save_destination(sender,instance,created, **kwargs):
+    print (f'post_save_destination is called')
+    if created:
+        print (f'destination is {instance. location}')
+        current_date = instance.start_date
+        while current_date <= instance.end_date:
+            print (f'current_date is {current_date}')    
+            day = Day(date=current_date, destination_id=instance.id)
+            day.save()
+            current_date = current_date + timedelta(days=1)

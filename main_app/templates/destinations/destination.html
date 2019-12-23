@@ -13,9 +13,9 @@
         </tr>
     </thead>
     <tbody>
-        {% for day in destination.day_set.all %}
+        {% for day in days %}
         <tr>
-            <td>Day of the week</td>
+            <td>{{ day.weekday}}</td>
             <td>{{ day.date }}</td>
             <td>Weather</td>
         </tr>

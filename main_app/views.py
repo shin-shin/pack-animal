@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 import os
+import calendar
 # Create your views here.
 
 def home(request):
@@ -30,10 +31,14 @@ def dashboard(request):
 
 def destination(request, destination_id):
     destination = Destination.objects.get(id=destination_id)
+    days = destination.day_set.all()
+
+    for d in days:
+      d.weekday = calendar.day_name[d.date.weekday()] 
 
     context = {
       'destination': destination,
-      # 'days': Day.days_set.all
+      'days': days
     }
     return render(request, "destinations/destination.html", context)
 
@@ -65,27 +70,8 @@ class DestinationCreate(CreateView):
   fields = ['location', 'start_date', 'end_date']
   print (f'model is {model}')
 
-  def add_days(self, destination_id):
-    destination = Destination.objects.get(id = destination_id)
-    destination.save()
-    print (f'destination is {destination}')
-    start_date = destination.start_date
-    end_date = destination.end_date
-    print (f'start_date is {start_date}')
-    print (f'end_date is {end_date}')
-
-
-    delta = end_date - start_date
-    for i in range(delta.days + 1):
-      day = Day(date=start_date + timedelta(days=i), destination_id=destination_id)
-      day.save()
-      print (f'day is {day}')
-    return day
-
   def form_valid(self, form):
     # Assign the logged in user
     form.instance.user = self.request.user
     # Let the CreateView do its job as usual
     return super().form_valid(form)
-
-
