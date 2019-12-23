@@ -1,5 +1,7 @@
 from django.urls import path, include
 from . import views
+from main_app.views import DestinationCreate
+
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -10,7 +12,7 @@ urlpatterns = [
     path('destinations/', views.dashboard, name='dashboard'),
     path('destinations/<int:d_id>/', views.destination, name='destination'),
     path('day/<int:day_id>/', views.day, name='day'),
-    path('new-destination/', views.new_destination, name='new_destination'),
+    path('new-destination/', DestinationCreate.as_view(), name='new_destination'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name='signup')
 ]
