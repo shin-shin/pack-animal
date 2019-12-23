@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
+from datetime import date, timedelta
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Destination, Day, Activity, Item
@@ -26,13 +27,13 @@ def dashboard(request):
     }
     return render(request, "destinations/dashboard.html", context)
 
-def new_destination(request):
-    return render(request, "destinations/new_destination.html")
 
 def destination(request, destination_id):
     destination = Destination.objects.get(id=destination_id)
+
     context = {
-      'destination': destination
+      'destination': destination,
+      # 'days': Day.days_set.all
     }
     return render(request, "destinations/destination.html", context)
 
@@ -62,9 +63,29 @@ def signup(request):
 class DestinationCreate(CreateView):
   model = Destination
   fields = ['location', 'start_date', 'end_date']
+  print (f'model is {model}')
+
+  def add_days(self, destination_id):
+    destination = Destination.objects.get(id = destination_id)
+    destination.save()
+    print (f'destination is {destination}')
+    start_date = destination.start_date
+    end_date = destination.end_date
+    print (f'start_date is {start_date}')
+    print (f'end_date is {end_date}')
+
+
+    delta = end_date - start_date
+    for i in range(delta.days + 1):
+      day = Day(date=start_date + timedelta(days=i), destination_id=destination_id)
+      day.save()
+      print (f'day is {day}')
+    return day
 
   def form_valid(self, form):
     # Assign the logged in user
     form.instance.user = self.request.user
     # Let the CreateView do its job as usual
     return super().form_valid(form)
+
+

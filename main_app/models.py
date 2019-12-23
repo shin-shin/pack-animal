@@ -17,17 +17,18 @@ class Destination(models.Model):
     def get_absolute_url(self):
         return reverse('destination', kwargs={'destination_id': self.id})
 
-    def daterange(self, start_date, end_date):
-        for n in range(int ((end_date - start_date).days)):
-            yield start_date + timedelta(n)
-            start_date = self.start_date
-            end_date = self.end_date
+    # def daterange(self, start_date, end_date):
+        
+        # destination = Destination.objects.get(id=destination_id)
+        # destination.save()
 
-            delta = end_date - start_date
+        # start_date = destination.start_date
+        # end_date = destination.end_date
 
-        for i in range(delta.days + 1):
-            day = start_date + timedelta(days=i)
-            print(day)
+        # delta = end_date - start_date
+        # for i in range(delta.days + 1):
+        #     day = Day(date=start_date + timedelta(days=i), destination_id=destination_id)
+        #     day.save()
 
     class Meta:
         ordering = ['-start_date']

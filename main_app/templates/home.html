@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,13 @@
   <link rel="stylesheet" href="static/css/home.css">
   <title></title>
 </head>
+
 <body>
   <div class="menu-wrap">
     <input type="checkbox" class="toggler">
-    <div class="hamburger"><div></div></div>
+    <div class="hamburger">
+      <div></div>
+    </div>
     <div class="menu">
       <div>
         <div>
@@ -26,7 +30,7 @@
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <li><a href="{% url 'login' %}">Log In </a></li>
-            {% endif %}           
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -36,9 +40,16 @@
   <header class="showcase">
     <div class="container showcase-inner">
       <h1>Welcome to PackAnimal</h1>
-      <p>Our app is designed to tie up all those loose ends in a single platform that houses everything you’ll need to make your next trip a success—from suggesting activities to providing up to date weather information and a home for your all-in-one packing list. </p>
-      <a href="#" class="btn">Enter destination</a>
+      <p>Our app is designed to tie up all those loose ends in a single platform that houses everything you’ll need to
+        make your next trip a success—from suggesting activities to providing up to date weather information and a home
+        for your all-in-one packing list. </p>
+      <!-- <a href="#" class="btn">Enter destination</a> -->
+      <form action="" method="post">
+        <input type="text" value="">
+        <a href="#" class="btn">Enter destination</a>
+      </form>
     </div>
   </header>
 </body>
+
 </html>
