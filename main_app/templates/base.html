@@ -33,7 +33,7 @@
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'new_destination' %}">Add a Destination</a></li>
-          <li><a href="{% url 'about' %}">My Destinations</a></li>
+          <li><a href="{% url 'dashboard' %}">My Destinations</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
           <li><a href="{% url 'login' %}">Log In </a></li>

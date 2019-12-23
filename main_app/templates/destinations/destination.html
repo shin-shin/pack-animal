@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ destination.location }}</h1>
+<h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
+<p>{{ destination.completed }}</p>
+<table class="striped">
+    <thead>
+        <tr>
+            <th>Day of the week</th>
+            <th>Date</th>
+            <th>Weather</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for day in destination.day_set.all %}
+        <tr>
+            <td>Day of the week</td>
+            <td>{{ day.date }}</td>
+            <td>Weather</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

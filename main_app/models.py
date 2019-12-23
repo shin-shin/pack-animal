@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from datetime import date
+from datetime import date, timedelta
 from django.contrib.auth.models import User
 # Create your models here.
 
@@ -14,6 +14,21 @@ class Destination(models.Model):
     def __str__(self):
         return f'trip to {self.location} from {self.start_date} to {self.end_date}'
     
+    def get_absolute_url(self):
+        return reverse('destination', kwargs={'destination_id': self.id})
+
+    def daterange(self, start_date, end_date):
+        for n in range(int ((end_date - start_date).days)):
+            yield start_date + timedelta(n)
+            start_date = self.start_date
+            end_date = self.end_date
+
+            delta = end_date - start_date
+
+        for i in range(delta.days + 1):
+            day = start_date + timedelta(days=i)
+            print(day)
+
     class Meta:
         ordering = ['-start_date']
 

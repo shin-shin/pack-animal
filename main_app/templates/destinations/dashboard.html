@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>My Destinations</h1>
+{% for destination in destinations %}
+  <a href="{% url 'destination' destination.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ destination.location }}</span>
+            <p>Start Date: {{ destination.start_date }}</p>
+            <p>End Date: {{ destination.end_date }}</p>
+            <p>Completed: {{ destination.completed }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

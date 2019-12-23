@@ -17,25 +17,33 @@ def about(request):
     return render(request, "about.html")
 
 def attractions(request):
-    return render(request, "attractions.html")
+    return render(request, "destinations/attractions.html")
 
 def dashboard(request):
-    return render(request, "menu/dashboard.html")
+    destinations = Destination.objects.filter(user = request.user)
+    context = {
+      'destinations': destinations
+    }
+    return render(request, "destinations/dashboard.html", context)
 
 def new_destination(request):
-    return render(request, "menu/new_destination.html")
+    return render(request, "destinations/new_destination.html")
 
-def destination(request):
-    return render(request, "menu/destination.html")
+def destination(request, destination_id):
+    destination = Destination.objects.get(id=destination_id)
+    context = {
+      'destination': destination
+    }
+    return render(request, "destinations/destination.html", context)
 
 def packing(request):
-    return render(request, "menu/packing.html")
+    return render(request, "destinations/packing.html")
 
 def discover(request):
-    return render(request, "menu/discover.html")
+    return render(request, "destinations/discover.html")
 
 def day(request):
-    return render(request, "menu/day.html")
+    return render(request, "destinations/day.html")
 
 def signup(request):
   error_message = ''
@@ -51,6 +59,12 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-class DestinationCreate(LoginRequiredMixin, CreateView):
+class DestinationCreate(CreateView):
   model = Destination
   fields = ['location', 'start_date', 'end_date']
+
+  def form_valid(self, form):
+    # Assign the logged in user
+    form.instance.user = self.request.user
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
