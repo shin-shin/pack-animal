@@ -12,6 +12,27 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
+def attractions(request):
+    return render(request, "attractions.html")
+
+def dashboard(request):
+    return render(request, "menu/dashboard.html")
+
+def new_destination(request):
+    return render(request, "menu/new_destination.html")
+
+def destination(request):
+    return render(request, "menu/destination.html")
+
+def packing(request):
+    return render(request, "menu/packing.html")
+
+def discover(request):
+    return render(request, "menu/discover.html")
+
+def day(request):
+    return render(request, "menu/day.html")
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
