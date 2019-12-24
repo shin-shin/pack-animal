@@ -16,10 +16,13 @@ class Destination(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f'trip to {self.location}({self.id}) from {self.start_date} to {self.end_date}'
+        return f'{self.location}({self.id}) from {self.start_date} to {self.end_date}'
     
     def get_absolute_url(self):
         return reverse('destination', kwargs={'destination_id': self.id})
+
+    def item_for_destination(self):
+        return self.item_set.filter(destination_id=self.id)
 
     class Meta:
         ordering = ['-start_date']
@@ -41,16 +44,26 @@ class Activity(models.Model):
     def __str__(self):
         return f'{self.name} on {self.day}'
 
+# class Packing(models.Model):
+#     test = models.CharField(max_length=200)
+#     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
+
+#     def get_absolute_url(self):
+#         return reverse('packing_list', kwargs={'destination_id': destination.id})
+
+#     def __str__(self):
+#         return f'Packing list (# {self.id}) for a trip to {self.destination}'
+
 class Item(models.Model):
     name = models.CharField(max_length=200)
     is_checked = models.BooleanField(default=False)
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
 
-    def get_absolute_url(self):
-        return reverse('item_list', kwargs={'destination_id': destination.id})
+    # def get_absolute_url(self):
+    #     return reverse('item_list', kwargs={'destination_id': destination.id})
 
     def __str__(self):
-        return f'{self.name} for a trip to {self.destination}'
+        return f'{self.name}'
 
 
 @receiver(post_save, sender=Destination)

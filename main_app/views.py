@@ -45,14 +45,23 @@ def destination(request, destination_id):
     return render(request, "destinations/destination.html", context)
 
 
-class PackingList(LoginRequiredMixin, ListView):
+# class PackingDetail(LoginRequiredMixin, DetailView):
+#     model = Packing
+
+#     def get_context_data(self, **kwargs):
+#         context = super(PackingDetail, self).get_context_data(**kwargs)
+#         context['test'] = self.object_list.first
+        
+#         return context
+
+class ItemList(LoginRequiredMixin, ListView):
     model = Item
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(PackingList, self).get_context_data(**kwargs)
-    #     # context['test'] = self.object.destination.location
+    def get_context_data(self, **kwargs):
+        context = super(ItemList, self).get_context_data(**kwargs)
+        context['test'] = self.object_list.first
         
-    #     return context
+        return context
 
 def discover(request):
     location = request.POST.get('location','')

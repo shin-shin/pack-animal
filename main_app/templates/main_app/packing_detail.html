@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Packing list for {{ item.destination }}</h1>
+<h1>Packing list for {{ packing.destination }}</h1>
 <h1>Test {{test }}</h1>
 <p>Lets have fun with this project!</p>
 
-{% for item in destination.item_set.all %}
+{% for item in object_list %}
 <h4>{{ item.name }}</h4>
 {% empty %}
 <p>No packing list items yet</p>
