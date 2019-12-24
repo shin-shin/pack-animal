@@ -47,21 +47,19 @@ def packing(request):
     return render(request, "destinations/packing.html")
 
 def discover(request):
-    return render(request, "destinations/discover.html")
+    location = request.POST.get('location','')
+    print(f'location is {location}')
+    return render(request, "discover.html", {'location':location})
 
-# def day(request, destination_id):
-#     destination = Destination.objects.get(id=destination_id)
-#     days = destination.day_set.all()
-    
-#     context = {
-#       'destination': destination,
-#       'days': days
-#     }
-#     return render(request, "destinations/day.html", context)
 
 class DayDetail(LoginRequiredMixin, DetailView):
     model = Day
-    
+
+    def get_context_data(self, **kwargs):
+        context = super(DayDetail, self).get_context_data(**kwargs)
+        context['weekday'] = calendar.day_name[self.object.date.weekday()]
+        return context
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':

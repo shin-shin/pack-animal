@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+import calendar
 # Create your models here.
 
 class Destination(models.Model):
@@ -15,7 +16,7 @@ class Destination(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f'trip to {self.location} from {self.start_date} to {self.end_date}'
+        return f'trip to {self.location}({self.id}) from {self.start_date} to {self.end_date}'
     
     def get_absolute_url(self):
         return reverse('destination', kwargs={'destination_id': self.id})
@@ -26,9 +27,12 @@ class Destination(models.Model):
 class Day(models.Model):
     date = models.DateField()
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
-    
+
+    def get_absolute_url(self):
+        return reverse('day_detail', kwargs={'day_id': self.id})
+
     def __str__(self):
-        return f'{self.date} at {self.destination}'
+        return f'{self.date} at {self.destination} with id {self.id}'
 
 class Activity(models.Model):
     name = models.CharField(max_length=200)

@@ -44,9 +44,11 @@
         make your next trip a success—from suggesting activities to providing up to date weather information and a home
         for your all-in-one packing list. </p>
       <!-- <a href="#" class="btn">Enter destination</a> -->
-      <form action="" method="post">
-        <input type="text" value="">
-        <a href="#" class="btn">Enter destination</a>
+      
+      <form action="/discover/" method="post" style="margin-top: 30px;">
+        {% csrf_token %}
+        <input type="text" name="location" value="" style="height: 1.5rem; font-size:1rem;padding:20px 10px;">
+        <button type="submit" class="color" style="font-size:1rem;padding:12px 10px; color: white; box-sizing: border-box; border: 2px solid #0F637D; ">Search destination</button>
       </form>
     </div>
   </header>

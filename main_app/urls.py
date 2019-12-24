@@ -12,10 +12,10 @@ urlpatterns = [
     
     path('destinations/', views.dashboard, name='dashboard'),
     path('destinations/<int:destination_id>/', views.destination, name='destination'),
-    path('destinations/<int:pk>/day/<int:day_id>/', views.DayDetail.as_view(), name='day'),
+ #   path('destinations/<int:pk>/day/<int:day_id>/', views.DayDetail.as_view(), name='day'),
+    path('destinations/<int:destination_id>/day/<int:pk>/', views.DayDetail.as_view(), name='day'),
     
     path('new-destination/', views.DestinationCreate.as_view(), name='new_destination'),
-    # path('new-destination/', views.new_destination, name='new_destination'),
     
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name='signup')
