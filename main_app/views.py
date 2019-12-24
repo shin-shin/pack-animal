@@ -51,18 +51,10 @@ def discover(request):
     print(f'location is {location}')
     return render(request, "discover.html", {'location':location})
 
-# def day(request, destination_id):
-#     destination = Destination.objects.get(id=destination_id)
-#     days = destination.day_set.all()
-    
-#     context = {
-#       'destination': destination,
-#       'days': days
-#     }
-#     return render(request, "destinations/day.html", context)
 
 class DayDetail(LoginRequiredMixin, DetailView):
-  model = Day
+    model = Day
+
 
 def signup(request):
   error_message = ''
