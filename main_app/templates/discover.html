@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1> Discover template </h1>
+{% if location %}
+<h1> Discover attractions in {{location}}</h1>
+{% else %}
+<h1> Enter destinations to see popular attractions</h1>
+{% endif %}
 <p>Lets have fun with this project!</p> 
 
 {% endblock %}
