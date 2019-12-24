@@ -46,7 +46,7 @@ def packing(request):
     return render(request, "destinations/packing.html")
 
 def discover(request):
-    location = request.POST.get('location','XXX')
+    location = request.POST.get('location','')
     print(f'location is {location}')
     return render(request, "discover.html", {'location':location})
 
