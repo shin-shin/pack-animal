@@ -55,6 +55,10 @@ def discover(request):
 class DayDetail(LoginRequiredMixin, DetailView):
     model = Day
 
+    def get_context_data(self, **kwargs):
+        context = super(DayDetail, self).get_context_data(**kwargs)
+        context['weekday'] = calendar.day_name[self.object.date.weekday()]
+        return context
 
 def signup(request):
   error_message = ''
