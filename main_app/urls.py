@@ -7,12 +7,12 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('discover/', views.discover, name='discover'),
-    path('packing/<int:d_id>/', views.packing, name='packing'),
-    path('attractions/<int:d_id>/', views.attractions, name='attractions'),
+    path('packing/<int:destination_id>/', views.packing, name='packing'),
+    path('attractions/<int:destination_id>/', views.attractions, name='attractions'),
     
     path('destinations/', views.dashboard, name='dashboard'),
     path('destinations/<int:destination_id>/', views.destination, name='destination'),
-    path('destinations/<int:destination_id>/day<int:day_id>/', views.day, name='day'),
+    path('destinations/<int:pk>/day/<int:day_id>/', views.DayDetail.as_view(), name='day'),
     
     path('new-destination/', views.DestinationCreate.as_view(), name='new_destination'),
     # path('new-destination/', views.new_destination, name='new_destination'),

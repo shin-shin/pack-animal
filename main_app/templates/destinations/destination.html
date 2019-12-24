@@ -15,7 +15,7 @@
     <tbody>
         {% for day in days %}
         <tr>
-            <td>{{ day.weekday}}</td>
+            <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
             <td>{{ day.date }}</td>
             <td>Weather</td>
         </tr>
