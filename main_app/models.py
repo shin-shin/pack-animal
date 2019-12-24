@@ -46,6 +46,9 @@ class Item(models.Model):
     is_checked = models.BooleanField(default=False)
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
 
+    def get_absolute_url(self):
+        return reverse('item_list', kwargs={'destination_id': destination.id})
+
     def __str__(self):
         return f'{self.name} for a trip to {self.destination}'
 
