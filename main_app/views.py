@@ -43,8 +43,15 @@ def destination(request, destination_id):
     }
     return render(request, "destinations/destination.html", context)
 
-def packing(request):
-    return render(request, "destinations/packing.html")
+# def packing(request):
+#     return render(request, "destinations/packing.html")
+
+class PackingList(LoginRequiredMixin, ListView):
+    model = Item
+
+    def get_context_data(self, **kwargs):
+        context = super(PackingList, self).get_context_data(**kwargs)
+        return context
 
 def discover(request):
     location = request.POST.get('location','')

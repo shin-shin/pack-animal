@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<a href="{% url 'packing' destination.id %}">Packing List</a> |
+<a href="{% url 'attractions' destination.id %}">Attractions</a>
+
 <h1>{{ destination.location }}</h1>
 <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
 <p>{{ destination.completed }}</p>
