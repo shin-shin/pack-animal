@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
+from django.views.generic.list import ListView
 from django.http import HttpResponse
 from datetime import date, timedelta
 from django.contrib.auth import login
@@ -43,8 +44,15 @@ def destination(request, destination_id):
     }
     return render(request, "destinations/destination.html", context)
 
-def packing(request):
-    return render(request, "destinations/packing.html")
+
+class PackingList(LoginRequiredMixin, ListView):
+    model = Item
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(PackingList, self).get_context_data(**kwargs)
+    #     # context['test'] = self.object.destination.location
+        
+    #     return context
 
 def discover(request):
     location = request.POST.get('location','')

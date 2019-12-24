@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Packing list for {{ item.name }}</h1>
+<p>Lets have fun with this project!</p> 
+
+{% for item in object_list %}
+    <h4>{{ item.name }}</h4>
+{% empty %}
+    <p>No packing list items yet</p>
+{% endfor %}
+
+
+{% endblock %}
