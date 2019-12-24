@@ -60,8 +60,8 @@ def discover(request):
 #     return render(request, "destinations/day.html", context)
 
 class DayDetail(LoginRequiredMixin, DetailView):
-  model = Day
-
+    model = Day
+    
 def signup(request):
   error_message = ''
   if request.method == 'POST':

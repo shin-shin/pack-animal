@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
+<h1>{{ destination.location }}</h1>
+
 <h1>Day template </h1>
-<h3>{{ day.weekday }} {{ day.date }}</h3>
+<h3>{{ day.weekday }}</h3>
+<h3>{{ day.date }}</h3>
 {% endblock %}
