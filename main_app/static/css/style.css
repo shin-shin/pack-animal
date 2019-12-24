@@ -14,6 +14,9 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
+.dest{
+  background-image: url('https://i.imgur.com/AIvPYQs.jpg');
+}
 
 .container {
 	width: 80%;
@@ -94,4 +97,7 @@ footer.page-footer {
 .color{
   background-color:rgba(13, 110, 139, 0.75);
 }
+
+
+
 
