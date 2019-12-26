@@ -56,10 +56,17 @@ def destination(request, destination_id):
 
 class ItemList(LoginRequiredMixin, ListView):
     model = Item
+    context_object_name = 'items'
+    # queryset = Item.objects.filter(destination = self.destination)
+
+    def get_queryset(self):
+        print ("Item.objects ", self.kwargs['destination_id'])
+        return Item.objects.filter(destination_id=self.kwargs['destination_id'])
 
     def get_context_data(self, **kwargs):
         context = super(ItemList, self).get_context_data(**kwargs)
         context['test'] = self.object_list.first
+        context['destination'] = Destination.objects.get(id = self.kwargs['destination_id'])
         
         return context
 
