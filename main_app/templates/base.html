@@ -19,7 +19,7 @@
     <nav class="color" role="navigation">
       <div class="container">
         <a href="/" class="brand-logo">PackAnimal</a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down light">
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'new_destination' %}">Add a Destination</a></li>
@@ -46,7 +46,7 @@
     </nav>
   </header>
   <main>
-    <div class="container">
+    <div class="container light">
       {% block content %}
       <h2>Hello World!</h2>
 
@@ -54,7 +54,7 @@
       <br><br>
     </div>
   </main>
-  <footer class="page-footer ">
+  <footer class="page-footer light">
     <div class="footer-copyright">
       <div class="container">
         Made by <a href="https://github.com/shin-shin/pack-animal">PackAnimal</a>

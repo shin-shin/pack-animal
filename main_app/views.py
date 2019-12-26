@@ -24,8 +24,12 @@ def about(request):
     return render(request, "about.html")
 
 
-def attractions(request):
-    return render(request, "destinations/attractions.html")
+def attractions(request, destination_id):
+    destination = Destination.objects.get(id=destination_id)
+    context = {
+        'destination': destination
+    }
+    return render(request, "destinations/attractions.html", context)
 
 
 def dashboard(request):
