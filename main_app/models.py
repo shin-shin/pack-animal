@@ -95,5 +95,3 @@ def post_save_destination(sender,instance,created, **kwargs):
                 Day.objects.filter(destination_id=instance.id, date=d).delete()
             else:
                 print (f'exiting date still exists')    
-
-
