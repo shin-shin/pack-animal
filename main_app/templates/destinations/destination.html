@@ -5,8 +5,11 @@
 
 <h1>{{ destination.location }}</h1>
 <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
-<p>{{ destination.completed }}</p>
-<table class="striped">
+{% if destination.completed == False %}
+<p class="light pink-text"> Current trip</p>
+{% else %} 
+<p class="light light-blue-text">Completed trip {% endif %}</p class="light pink-text"> 
+<table class="striped light">
     <thead>
         <tr>
             <th>Day of the week</th>
@@ -24,5 +27,7 @@
         {% endfor %}
     </tbody>
 </table>
-
+<br>
+<a href="{% url 'destination_update' destination.id %}" class="btn">Edit</a>
+<a href="{% url 'destination_delete' destination.id %}" class="btn">Delete</a>
 {% endblock %}

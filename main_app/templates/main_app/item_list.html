@@ -2,14 +2,20 @@
 {% block content %}
 
 <h1>Packing list for {{ destination.location }}</h1>
-<h1>Test {{test }}</h1>
-<p>Lets have fun with this project!</p>
 
 {% for item in items %}
 <h4>{{ item.name }}</h4>
 {% empty %}
 <p>No packing list items yet</p>
 {% endfor %}
+
+<form action="{% url 'items' destination.id %}" method="post">
+    {% csrf_token %}
+    {{ item_form.as_table }}
+    
+    <input type="text" name="name">
+    <input type="submit" class="btn" value="Add Item">
+</form>
 
 
 {% endblock %}
