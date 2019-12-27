@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+<a href="{% url 'destination' day.destination_id %}">Back to Destination</a>
 
 <h1>{{ day.destination.location }}</h1>
 <h4>{{ weekday }} - {{ day.date }}</h4>
 
 <p>It is going to be a great day!</p>
+
+<form action="" method="post"> 
+    {% csrf_token %}
+    {{ activity_form.as_table }}
+    
+    <input type="text" name="name">
+    <input type="submit" class="btn" value="Add Activity">
+</form>
 {% endblock %}

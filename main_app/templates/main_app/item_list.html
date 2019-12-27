@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<a href="{% url 'destination' destination.id %}">Back to Itinerary</a> |
+<a href="{% url 'attractions' destination.id %}">Attractions</a>
 
 <h1>Packing list for {{ destination.location }}</h1>
 
