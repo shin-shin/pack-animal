@@ -6,12 +6,12 @@
 <h1>Packing list for {{ destination.location }}</h1>
 
 {% for item in items %}
-<h4>{{ item.name }}</h4>
+<p>{{ item.name }}</p>
 {% empty %}
 <p>No packing list items yet</p>
 {% endfor %}
 
-<form action="{% url 'items' destination.id %}" method="post">
+<form action="" method="post">
     {% csrf_token %}
     {{ item_form.as_table }}
     

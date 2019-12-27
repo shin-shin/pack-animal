@@ -53,9 +53,24 @@ def destination(request, destination_id):
     }
     return render(request, "destinations/destination.html", context)
 
+
 class ItemList(LoginRequiredMixin, ListView):
     model = Item
     context_object_name = 'items'
+
+    def get(self, request, *args, **kwargs):
+        self.form = ItemForm(self.request.GET or None,)
+        return super(ItemList, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.form = ItemForm(self.request.POST or None)
+        if self.form.is_valid():
+            new_item = self.form.save(commit=False)
+            new_item.destination_id = self.kwargs['destination_id']
+            new_item.save()
+        else:
+            return super(ItemList, self).post(request, *args, **kwargs)
+        return redirect('items', destination_id=self.kwargs['destination_id'])
 
     def get_queryset(self):
         print("Destination id ", self.kwargs['destination_id'])
@@ -68,15 +83,16 @@ class ItemList(LoginRequiredMixin, ListView):
             id=self.kwargs['destination_id'])
         return context
 
-def add_item(request, destination_id):
-	# create the ModelForm using the data in request.POST
-  form = ItemForm(request.POST)
-  # validate the form
-  if form.is_valid():
-    new_item = form.save(commit=False)
-    new_item.destination_id = destination_id
-    new_item.save()
-  return redirect('items', destination_id=destination_id)
+
+# def add_item(request, destination_id):
+#     # create the ModelForm using the data in request.POST
+#     form = ItemForm(request.POST)
+#     # validate the form
+#     if form.is_valid():
+#         new_item = form.save(commit=False)
+#         new_item.destination_id = destination_id
+#         new_item.save()
+#     return redirect('items', destination_id=destination_id)
 
 
 def discover(request):
@@ -88,9 +104,26 @@ def discover(request):
 class DayDetail(LoginRequiredMixin, DetailView):
     model = Day
 
+    def get(self, request, *args, **kwargs):
+        self.form = ActivityForm(self.request.GET or None,)
+        # destination_id=self.kwargs['destination_id']
+        # day_id=self.kwargs['pk']
+        return super(DayDetail, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.form = ActivityForm(self.request.POST or None)
+        if self.form.is_valid():
+            new_activity = self.form.save(commit=False)
+            new_activity.day_id = self.kwargs['pk']
+            new_activity.save()
+        else:
+            return super(DayDetail, self).post(request, *args, **kwargs)
+        return redirect('day', destination_id=self.kwargs['destination_id'], pk=self.kwargs['pk'])
+
     def get_context_data(self, **kwargs):
         context = super(DayDetail, self).get_context_data(**kwargs)
         context['weekday'] = calendar.day_name[self.object.date.weekday()]
+        context['activities'] = Activity.objects.filter(day_id=self.kwargs['pk'])
         return context
 
 
@@ -109,7 +142,7 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-class DestinationCreate(CreateView): #works
+class DestinationCreate(CreateView):  # works
     model = Destination
     fields = ['location', 'start_date', 'end_date']
 
@@ -119,7 +152,8 @@ class DestinationCreate(CreateView): #works
         # Let the CreateView do its job as usual
         return super().form_valid(form)
 
-class DestinationUpdate(UpdateView): #updates name, but doesn't add/delete days
+
+class DestinationUpdate(UpdateView):  
     model = Destination
     fields = ['location', 'start_date', 'end_date']
 
@@ -129,6 +163,7 @@ class DestinationUpdate(UpdateView): #updates name, but doesn't add/delete days
         # Let the CreateView do its job as usual
         return super().form_valid(form)
 
-class DestinationDelete(DeleteView): #works
+
+class DestinationDelete(DeleteView):  # works
     model = Destination
     success_url = '/destinations/'

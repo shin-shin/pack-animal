@@ -5,7 +5,11 @@
 <h1>{{ day.destination.location }}</h1>
 <h4>{{ weekday }} - {{ day.date }}</h4>
 
-<p>It is going to be a great day!</p>
+{% for activity in activities %}
+<p>{{ activity.name }}</p>
+{% empty %}
+<p>Add some activities to make this day even better!</p>
+{% endfor %}
 
 <form action="" method="post"> 
     {% csrf_token %}
