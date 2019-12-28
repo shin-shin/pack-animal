@@ -9,11 +9,29 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Destination, Day, Activity, Item
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ItemForm, ActivityForm
+from django.conf import settings
 
 
 import os
 import calendar
-# Create your views here.
+import requests, json
+
+# API_KEY = API_KEY
+
+def get_attractions(request):
+    url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
+    location = request.POST.get('location','')
+    x = 'point of interest'
+    r = requests.get(url + 'query=' + location +
+                            'type=' +  x +
+                            '&key=' + API_KEY)
+    data = r.json()
+    attractions = data['results']
+    context = {'location':location,
+               'attractions': attractions
+               }
+    return render(request, "discover.html", context)
+
 
 
 def home(request):
