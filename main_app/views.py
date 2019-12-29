@@ -106,19 +106,13 @@ class ItemList(LoginRequiredMixin, ListView):
         context['destination'] = Destination.objects.get(
             id=self.kwargs['destination_id'])
         return context
-
-
-# def add_item(request, destination_id):
-#     # create the ModelForm using the data in request.POST
-#     form = ItemForm(request.POST)
-#     # validate the form
-#     if form.is_valid():
-#         new_item = form.save(commit=False)
-#         new_item.destination_id = destination_id
-#         new_item.save()
-#     return redirect('items', destination_id=destination_id)
-
-
+    
+def delete_item(request, destination_id, pk):
+    print("delete_item: ", destination_id, pk)
+    item = Item.objects.get(id=pk)
+    item.delete()
+    return redirect('items', destination_id=destination_id)
+    
 def discover(request):
     location = request.POST.get('location', '')
     print(f'location is {location}')
