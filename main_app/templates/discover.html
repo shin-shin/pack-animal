@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if location %}
 <h1> Discover attractions in {{location}}</h1>
-{% else %}
-<h1> Enter destinations to see popular attractions</h1>
-{% endif %}
-<p>Lets have fun with this project!</p> 
+{% for attraction in attractions %}
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ attraction.name }}</span>
+        <p>rating: {{ attraction.rating }}</p>
+    </div>
+</div>
+    
+{% empty %}
+    <h1> Enter destinations to see popular attractions</h1>
+{% endfor %}
 
 {% endblock %}

@@ -6,7 +6,7 @@ from main_app.views import DestinationCreate
 urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('discover/', views.discover, name='discover'),
+    path('discover/', views.get_attractions, name='discover'),
     path('new-destination/', views.DestinationCreate.as_view(), name='new_destination'),
     path('destinations/<int:destination_id>/packing/', views.ItemList.as_view(), name='items'),
     # path('destinations/<int:destination_id>/add-item/', views.add_item, name='add_item'),
