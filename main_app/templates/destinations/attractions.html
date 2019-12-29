@@ -8,4 +8,20 @@
 <h5>Check out most popular attractions in {{ destination.location }}!</h5>
 <p>If you would like to visit some of attractions, just add them to your itinerary.</p> 
 
+{% for attraction in attractions %}
+<div class="row">
+    <div class="col s12 m4">
+        <div class="card medium">
+            <div class="card-image">
+                <img class="responsive-img" src="{{ photo }}{{attraction.photo2}}">
+            </div>
+            <div class="card-content">
+                <span class="card-title">{{ attraction.name }}</span>
+                <p>rating: {{ attraction.rating }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
