@@ -9,26 +9,32 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Destination, Day, Activity, Item
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ItemForm, ActivityForm
-from django.conf import settings
-
+from packanimal.settings import GOOGLE_API_KEY
 
 import os
 import calendar
 import requests, json
 
-# API_KEY = API_KEY
 
 def get_attractions(request):
+
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
+    url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
     location = request.POST.get('location','')
-    x = 'point of interest'
-    r = requests.get(url + 'query=' + location +
-                            'type=' +  x +
-                            '&key=' + API_KEY)
+    x = '+point+of+interest'
+    request_url = url + 'query=' + location +  x + '&key=' + GOOGLE_API_KEY
+    print("request_url: ", request_url)
+    r = requests.get(request_url)
     data = r.json()
     attractions = data['results']
+    i = 0
+    for a in attractions:
+        attractions[i]["photo2"] = a.get('photos')[0].get('photo_reference')
+        i += 1
+
     context = {'location':location,
-               'attractions': attractions
+               'attractions': attractions,
+               'photo': url_photo
                }
     return render(request, "discover.html", context)
 
