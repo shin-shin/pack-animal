@@ -1,7 +1,37 @@
-{% extends 'base.html' %}
-{% block content %}
+{% load static %}
 
-<h1>About PackAnimal</h1>
-<p>Lets have fun with this project!</p> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
 
-{% endblock %}
+</head>
+<body>
+        <div class="container">
+      <nav >
+        <input type="checkbox" id="nav" class="hidden">
+        <label for="nav" class="nav-btn">
+          <i></i>
+          <i></i> 
+          <i></i>
+        </label>
+        <div class="logo">
+          <a href="#"> brand </a>
+     </div>
+     <div  class="nav-wrapper">
+       <ul>
+         <li> <a href="#"></a>1</li>
+         <li> <a href="#"></a>2</li>  
+         <li> <a href="#"></a>3</li>  
+         <li> <a href="#"></a>4</li>
+       </ul>
+
+     </div>
+      </nav>
+
+    </div>
+    </body>

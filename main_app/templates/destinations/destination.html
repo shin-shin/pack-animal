@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<body class="dest">
 <h1>{{ destination.location }}</h1>
 <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
 <p>{{ destination.completed }}</p>
-<table class=" centered highlight responsive-table">
-    <thead>
-        <tr>
+<table class=" centered highlight responsive-table ">
+    <thead  class="background">
+        <tr class="title">
             <th>Day of the week</th>
             <th>Date</th>
             <th>Weather</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="custom" >
         {% for day in days %}
-        <tr>
+        <tr class="background">
             <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
             <td>{{ day.date }}</td>
             <td>Weather</td>
@@ -22,5 +22,5 @@
         {% endfor %}
     </tbody>
 </table>
-
+</body>
 {% endblock %}

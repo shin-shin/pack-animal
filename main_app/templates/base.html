@@ -11,15 +11,20 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+ <link href="{% static 'css/nav.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+ <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
   <header>
-    <nav class="color" role="navigation">
-      <div class="container">
-        <a href="/" class="brand-logo">PackAnimal</a>
-        <ul class="right hide-on-med-and-down">
+     
+    <nav>
+        <div class="container">
+   <div class="logo">
+        <a href="/" >PackAnimal</a>
+        </div>
+        <div class="nav-wrapper">
+        <ul>
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'new_destination' %}">Add a Destination</a></li>
@@ -42,7 +47,8 @@
           {% endif %}
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      </div>
+    
+    </div>
     </nav>
   </header>
   <main>
