@@ -16,10 +16,13 @@ class Destination(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f'trip to {self.location}({self.id}) from {self.start_date} to {self.end_date}'
+        return f'{self.location}({self.id}) from {self.start_date} to {self.end_date}'
     
     def get_absolute_url(self):
         return reverse('destination', kwargs={'destination_id': self.id})
+
+    def item_for_destination(self):
+        return self.item_set.filter(destination_id=self.id)
 
     class Meta:
         ordering = ['-start_date']
@@ -34,6 +37,9 @@ class Day(models.Model):
     def __str__(self):
         return f'{self.date} at {self.destination} with id {self.id}'
 
+    class Meta:
+        ordering = ['date']
+
 class Activity(models.Model):
     name = models.CharField(max_length=200)
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
@@ -41,23 +47,51 @@ class Activity(models.Model):
     def __str__(self):
         return f'{self.name} on {self.day}'
 
+
 class Item(models.Model):
     name = models.CharField(max_length=200)
     is_checked = models.BooleanField(default=False)
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f'{self.name} for a trip to {self.destination}'
+    # def get_absolute_url(self):
+    #     return reverse('item_list', kwargs={'destination_id': destination.id})
 
+    def __str__(self):
+        return f'{self.name}'
 
 @receiver(post_save, sender=Destination)
 def post_save_destination(sender,instance,created, **kwargs):
     print (f'post_save_destination is called')
     if created:
-        print (f'destination is {instance. location}')
         current_date = instance.start_date
         while current_date <= instance.end_date:
-            print (f'current_date is {current_date}')    
             day = Day(date=current_date, destination_id=instance.id)
             day.save()
             current_date = current_date + timedelta(days=1)
+    else:
+        new_dates = []
+        excisting_dates = []
+
+        current_date = instance.start_date
+        while current_date <= instance.end_date:
+            new_dates.append(current_date)
+            current_date = current_date + timedelta(days=1)
+
+        day_records = Day.objects.filter(destination_id=instance.id)
+        for record in day_records:
+            excisting_dates.append(record.date)
+
+        for d in new_dates:
+            print (f'new date is {d}')    
+            if d not in excisting_dates:
+                print (f'new date is new')    
+                day = Day(date=d, destination_id=instance.id)
+                day.save()     
+            else:
+                print (f'new date already exists, skipping')     
+
+        for d in excisting_dates:
+            if d not in new_dates:
+                Day.objects.filter(destination_id=instance.id, date=d).delete()
+            else:
+                print (f'exiting date still exists')    

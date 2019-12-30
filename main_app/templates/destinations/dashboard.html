@@ -10,6 +10,9 @@
             <p>Start Date: {{ destination.start_date }}</p>
             <p>End Date: {{ destination.end_date }}</p>
             <p>Completed: {{ destination.completed }}</p>
+            <br>
+            <a href="{% url 'destination_update' destination.id %}">Edit</a>
+            <a href="{% url 'destination_delete' destination.id %}">Delete</a>
         </div>
     </div>
   </a>

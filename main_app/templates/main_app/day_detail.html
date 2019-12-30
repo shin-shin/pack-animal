@@ -1,8 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
+<a href="{% url 'destination' day.destination_id %}">Back to Destination</a>
 
-<h1>{{ weekday }}</h1>
-<h4>{{ day.date }}</h4>
+<h1>{{ day.destination.location }}</h1>
+<h4>{{ weekday }} - {{ day.date }}</h4>
 
-<p>It is going to be a great day!</p>
+
+
+<table>
+    {% for activity in activities %}
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>
+            <p>{{ activity.name }} </p>
+        </td>
+        <td><a href="{% url 'delete_day_activity' day.destination.id activity.id %}" class="btn btn-small pink">Delete</a></td>
+        {% empty %}
+        <td>
+            <p>Add some activities to make this day even better!</p>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<form action="" method="post"> 
+    {% csrf_token %}
+    {{ activity_form.as_table }}
+    
+    <input type="text" name="name">
+    <input type="submit" class="btn" value="Add Activity">
+</form>
 {% endblock %}

@@ -1,26 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
-<body class="dest">
-<h1>{{ destination.location }}</h1>
-<h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
-<p>{{ destination.completed }}</p>
-<table class=" centered highlight responsive-table ">
-    <thead  class="background">
-        <tr class="title">
-            <th>Day of the week</th>
-            <th>Date</th>
-            <th>Weather</th>
-        </tr>
-    </thead>
-    <tbody class="custom" >
-        {% for day in days %}
-        <tr class="background">
-            <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
-            <td>{{ day.date }}</td>
-            <td>Weather</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-</body>
+<a href="{% url 'items' destination.id %}">Packing List</a> |
+<a href="{% url 'attractions' destination.id %}">Attractions</a>
+<div class="col s12 m7">
+    <h2 class="header">{{ destination.location }}</h2>
+    <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
+                {% if destination.completed == False %}
+                <p class="light pink-text"> Current trip</p>
+                {% else %}
+                <p class="light light-blue-text">Completed trip</p>
+                {% endif %}
+    <div class="card horizontal">
+        <div class="card-image">
+            <img src="{{ url_photo }}{{ obj.photo_reference }}" style="height: 100%; object-fit: cover;">
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
+                
+                <table class="striped light">
+                    <thead>
+                        <tr>
+                            <th>Day of the week</th>
+                            <th>Date</th>
+                            <th>Weather</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for day in days %}
+                        <tr>
+                            <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
+                            <td>{{ day.date }}</td>
+                            <td>Weather</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'destination_update' destination.id %}" class="btn  cyan darken-2">Edit</a>
+                <a href="{% url 'destination_delete' destination.id %}" class="btn  cyan darken-2">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

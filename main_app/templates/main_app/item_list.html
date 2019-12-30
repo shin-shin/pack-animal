@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'destination' destination.id %}">Back to Itinerary</a> |
+<a href="{% url 'attractions' destination.id %}">Attractions</a>
+
+<h1>Packing list for {{ destination.location }}</h1>
+<table>
+    {% for item in items %}
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>
+            <p>{{ item.name }} </p>
+        </td>
+        <td><a href="{% url 'item_delete' destination.id item.id %}" class="btn btn-small pink">Delete</a></td>
+        {% empty %}
+        <td>
+            <p>No packing list items yet</p>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br><br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ item_form.as_table }}
+
+    <input type="text" name="name" placeholder="What whould like to pack?">
+    <input type="submit" class="btn  cyan darken-2" value="Add Item">
+</form>
+
+
+{% endblock %}
