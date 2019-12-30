@@ -168,6 +168,12 @@ class DayDetail(LoginRequiredMixin, DetailView):
         context['activities'] = Activity.objects.filter(day_id=self.kwargs['pk'])
         return context
 
+def delete_activity(request, destination_id, pk):
+    # print("delete_activity: ", destination_id, pk)
+    activity = Activity.objects.get(id=pk)
+    activity.delete()
+    return redirect('day', destination_id=destination_id, pk=activity.day.id)
+
 
 def signup(request):
     error_message = ''

@@ -15,6 +15,7 @@ urlpatterns = [
     path('destinations/<int:pk>/delete/', views.DestinationDelete.as_view(), name='destination_delete'),
 
     path('destinations/<int:destination_id>/day/<int:pk>/', views.DayDetail.as_view(), name='day'),
+    path('destinations/<int:destination_id>/day/<int:pk>/delete', views.delete_activity, name='delete_day_activity'),
 
     path('destinations/<int:destination_id>/', views.destination, name='destination'),
     path('destinations/', views.dashboard, name='dashboard'),

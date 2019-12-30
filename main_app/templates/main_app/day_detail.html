@@ -5,11 +5,24 @@
 <h1>{{ day.destination.location }}</h1>
 <h4>{{ weekday }} - {{ day.date }}</h4>
 
-{% for activity in activities %}
-<p>{{ activity.name }}</p>
-{% empty %}
-<p>Add some activities to make this day even better!</p>
-{% endfor %}
+
+
+<table>
+    {% for activity in activities %}
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>
+            <p>{{ activity.name }} </p>
+        </td>
+        <td><a href="{% url 'delete_day_activity' day.destination.id activity.id %}" class="btn btn-small pink">Delete</a></td>
+        {% empty %}
+        <td>
+            <p>Add some activities to make this day even better!</p>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
 
 <form action="" method="post"> 
     {% csrf_token %}
