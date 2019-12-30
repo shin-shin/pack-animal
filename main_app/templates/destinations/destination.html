@@ -2,21 +2,27 @@
 {% block content %}
 <a href="{% url 'items' destination.id %}">Packing List</a> |
 <a href="{% url 'attractions' destination.id %}">Attractions</a>
-
-<h1>{{ destination.location }}</h1>
+<div class="col s12 m7">
+    <h2 class="header">{{ destination.location }}</h2>
+    <div class="card horizontal">
+        <div class="card-image">
+            <img src="{{ url_photo }}{{ obj.photo_reference }}">
+        </div>
+        <div class="card-stacked">
+            <div class="card-content">
 <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
 {% if destination.completed == False %}
 <p class="light pink-text"> Current trip</p>
 {% else %} 
 <p class="light light-blue-text">Completed trip {% endif %}</p class="light pink-text"> 
 <table class="striped light">
-    <!-- <thead>
+    <thead>
         <tr>
             <th>Day of the week</th>
             <th>Date</th>
             <th>Weather</th>
         </tr>
-    </thead> -->
+    </thead>
     <tbody>
         {% for day in days %}
         <tr>
@@ -28,6 +34,13 @@
     </tbody>
 </table>
 <br>
-<a href="{% url 'destination_update' destination.id %}" class="btn">Edit</a>
-<a href="{% url 'destination_delete' destination.id %}" class="btn">Delete</a>
+</div>
+<div class="card-action">
+    <a href="{% url 'destination_update' destination.id %}" class="btn">Edit</a>
+    <a href="{% url 'destination_delete' destination.id %}" class="btn">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
 {% endblock %}

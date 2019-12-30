@@ -23,7 +23,6 @@ def get_attractions(request):
     location = request.POST.get('location','')
     x = '+point+of+interest'
     request_url = url + 'query=' + location +  x + '&key=' + GOOGLE_API_KEY
-    print("request_url: ", request_url)
     r = requests.get(request_url)
     data = r.json()
     attractions = data['results']
@@ -49,10 +48,25 @@ def about(request):
 
 
 def attractions(request, destination_id):
+    url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
+    url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
     destination = Destination.objects.get(id=destination_id)
-    context = {
-        'destination': destination
-    }
+    location = destination.location
+    x = '+point+of+interest'
+    request_url = url + 'query=' + location +  x + '&key=' + GOOGLE_API_KEY
+    r = requests.get(request_url)
+    data = r.json()
+    attractions = data['results']
+    i = 0
+    for a in attractions:
+        attractions[i]["photo2"] = a.get('photos')[0].get('photo_reference')
+        i += 1
+
+    context = {'location':location,
+               'attractions': attractions,
+               'photo': url_photo,
+               'destination': destination
+               }
     return render(request, "destinations/attractions.html", context)
 
 
@@ -66,6 +80,17 @@ def dashboard(request):
 
 def destination(request, destination_id):
     destination = Destination.objects.get(id=destination_id)
+    url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
+    url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
+    location = destination.location
+    request_url = url + 'query=' + location + '&key=' + GOOGLE_API_KEY
+    r = requests.get(request_url)
+    data = r.json()
+    city = data['results']
+    test = city[0]
+    test1 = test['photos']
+    obj = test1[0]
+    
     days = destination.day_set.all()
 
     for d in days:
@@ -73,7 +98,9 @@ def destination(request, destination_id):
 
     context = {
         'destination': destination,
-        'days': days
+        'days': days,
+        'obj': obj,
+        'url_photo': url_photo
     }
     return render(request, "destinations/destination.html", context)
 
@@ -102,7 +129,6 @@ class ItemList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ItemList, self).get_context_data(**kwargs)
-        # context['item_form'] = ItemForm()
         context['destination'] = Destination.objects.get(
             id=self.kwargs['destination_id'])
         return context
@@ -124,8 +150,6 @@ class DayDetail(LoginRequiredMixin, DetailView):
 
     def get(self, request, *args, **kwargs):
         self.form = ActivityForm(self.request.GET or None,)
-        # destination_id=self.kwargs['destination_id']
-        # day_id=self.kwargs['pk']
         return super(DayDetail, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
