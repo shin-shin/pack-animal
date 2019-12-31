@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'items' destination.id %}">Packing List</a> |
-<a href="{% url 'attractions' destination.id %}">Attractions</a>
+<button><a href="{% url 'items' destination.id %}">Packing List</a> </button>
+<button><a href="{% url 'attractions' destination.id %}">Attractions</a></button>
 <div class="col s12 m7">
     <h2 class="header">{{ destination.location }}</h2>
     <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
@@ -10,7 +10,7 @@
                 {% else %}
                 <p class="light light-blue-text">Completed trip</p>
                 {% endif %}
-    <div class="card horizontal">
+    <div id="taco" class="card horizontal">
         <div class="card-image">
             <img src="{{ url_photo }}{{ obj.photo_reference }}" style="height: 100%; object-fit: cover;">
         </div>

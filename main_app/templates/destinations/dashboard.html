@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<body class='image'>
 <h1>My Destinations</h1>
 {% for destination in destinations %}
   <a href="{% url 'destination' destination.id %}">
