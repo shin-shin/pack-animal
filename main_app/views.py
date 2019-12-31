@@ -3,13 +3,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.http import HttpResponse
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Destination, Day, Activity, Item
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ItemForm, ActivityForm
-from packanimal.settings import GOOGLE_API_KEY
+from packanimal.settings import GOOGLE_API_KEY, DARKSKY_SECRET
 
 import os
 import calendar
@@ -82,25 +82,45 @@ def destination(request, destination_id):
     destination = Destination.objects.get(id=destination_id)
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
+
     location = destination.location
     request_url = url + 'query=' + location + '&key=' + GOOGLE_API_KEY
     r = requests.get(request_url)
     data = r.json()
     city = data['results']
     test = city[0]
+    geometry = test['geometry']
+    location = geometry['location']
+    lat = location['lat']
+    lng = location['lng']
     test1 = test['photos']
     obj = test1[0]
     
     days = destination.day_set.all()
-
     for d in days:
+        future_weather_url = f"https://api.darksky.net/forecast/{DARKSKY_SECRET}/{lat},{lng},{d.date}T04:00:00"
+        fw = requests.get(future_weather_url)
+        data3 = fw.json()
+        obj = data3['daily']
+        obj1 = obj['data']
+        daily = obj1[0]
         d.weekday = calendar.day_name[d.date.weekday()]
-
+        d.high = daily['temperatureHigh']
+        d.low = daily['temperatureLow']
+        
+    #current weather api call
+    current_weather_url = f"https://api.darksky.net/forecast/{DARKSKY_SECRET}/{lat},{lng}"
+    cw = requests.get(current_weather_url)
+    data2 = cw.json()
+    currently = data2['currently']
+        
     context = {
         'destination': destination,
         'days': days,
         'obj': obj,
-        'url_photo': url_photo
+        'url_photo': url_photo,
+        'currently': currently,
+        'daily': daily,
     }
     return render(request, "destinations/destination.html", context)
 
