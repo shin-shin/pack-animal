@@ -96,23 +96,31 @@ def destination(request, destination_id):
     test1 = test['photos']
     obj = test1[0]
     
-    weather_url = f"https://api.darksky.net/forecast/{DARKSKY_SECRET}/{lat},{lng}"
-    w = requests.get(weather_url)
-    data2 = w.json()
-    currently = data2['currently']
-    print(currently['temperature'])
-    # print(f'WEATHER: {data2["currently"]}')
     days = destination.day_set.all()
-
     for d in days:
+        future_weather_url = f"https://api.darksky.net/forecast/{DARKSKY_SECRET}/{lat},{lng},{d.date}T04:00:00"
+        fw = requests.get(future_weather_url)
+        data3 = fw.json()
+        obj = data3['daily']
+        obj1 = obj['data']
+        daily = obj1[0]
         d.weekday = calendar.day_name[d.date.weekday()]
-
+        d.high = daily['temperatureHigh']
+        d.low = daily['temperatureLow']
+        
+    #current weather api call
+    current_weather_url = f"https://api.darksky.net/forecast/{DARKSKY_SECRET}/{lat},{lng}"
+    cw = requests.get(current_weather_url)
+    data2 = cw.json()
+    currently = data2['currently']
+        
     context = {
         'destination': destination,
         'days': days,
         'obj': obj,
         'url_photo': url_photo,
         'currently': currently,
+        'daily': daily,
     }
     return render(request, "destinations/destination.html", context)
 

@@ -31,7 +31,7 @@
                         <tr>
                             <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
                             <td>{{ day.date }}</td>
-                            <td>Weather</td>
+                            <td>{{ day.high }}f/{{ day.low }}f</td>
                         </tr>
                         {% endfor %}
                     </tbody>
