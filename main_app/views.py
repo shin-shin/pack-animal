@@ -115,12 +115,12 @@ def destination(request, destination_id):
     currently = data2['currently']
         
     context = {
+        'daily': daily,
         'destination': destination,
         'days': days,
         'obj': obj,
         'url_photo': url_photo,
         'currently': currently,
-        'daily': daily,
     }
     return render(request, "destinations/destination.html", context)
 
