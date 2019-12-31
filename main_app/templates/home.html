@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="static/css/style.css">
   <link rel="stylesheet" href="static/css/home.css">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places"></script>
+  
   <title></title>
 </head>
 
@@ -47,11 +49,24 @@
       
       <form action="/discover/" method="post" style="margin-top: 30px;">
         {% csrf_token %}
-        <input type="text" name="location" value="" style="height: 1.5rem; font-size:1rem;padding:20px 10px;">
+        <input type="text" id="searchInput" name="location" value="" style="height: 1.5rem; font-size:1rem;padding:20px 10px;">
         <button type="submit" class="color" style="font-size:1rem;padding:12px 10px; color: white; box-sizing: border-box; border: 2px solid #0F637D; ">Search destination</button>
       </form>
     </div>
   </header>
+
+  <script>
+    function init() {
+      var options = {
+		    types: ['(cities)']
+	    };
+      var input = document.getElementById('searchInput');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+    google.maps.event.addDomListener(window, 'load', init);
+
+  </script>
+
 </body>
 
 </html>
