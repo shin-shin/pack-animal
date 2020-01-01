@@ -20,10 +20,10 @@ body {
 	margin: 0 auto;
 }
 
-body {
-  background-image: url('https://i.imgur.com/iimHEQC.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+ body {
+  /* background-image: url('https://i.imgur.com/BtQAvUX.png'); */
+   background-size: cover;
+  background-repeat: no-repeat; 
 }
 
 
@@ -82,7 +82,7 @@ nav a:hover::before {
 
 .card{
   background-color: rgb(240, 243, 245,.87);
-  color:black:
+  color:black;
 }
 main {
   flex: 1 0 auto;
@@ -99,4 +99,23 @@ footer.page-footer {
 h1{
   font-family: 'Roboto', sans-serif;
   text-align:center;
+}
+.about{
+  background-image:url('https://i.imgur.com/iimHEQC.jpg');
+}
+.new{
+  background-image:url('https://i.imgur.com/H9m8Neb.jpg');
+}
+.small{
+  background-color:#21e4b3;
+  color:white;
+  padding:5px; 
+
+}
+
+a{
+  color:rgb(7, 58, 78);
+}
+.dest{
+  background-image: url('https://i.imgur.com/iroTG3R.png');
 }
