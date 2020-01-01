@@ -9,15 +9,14 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
 import os
-
 import environ
 env = environ.Env()
 environ.Env.read_env()
 
 
 GOOGLE_API_KEY =  env('GOOGLE_PLACES')
+DARKSKY_SECRET = env('DARKSKY_SECRET')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -69,10 +68,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main_app.context_processors.global_settings',
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'packanimal.wsgi.application'
 
