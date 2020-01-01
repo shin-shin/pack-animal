@@ -4,7 +4,7 @@
 <a href="{% url 'attractions' destination.id %}">Attractions</a>
 <div class="col s12 m7">
     <h2 class="header">{{ destination.location }}</h2>
-    <h4> Current temperature: {{ currently.temperature }}f </h4>
+    <h4> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F </h4>
     <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
                 {% if destination.completed == False %}
                 <p class="light pink-text"> Current trip</p>
@@ -31,7 +31,7 @@
                         <tr>
                             <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
                             <td>{{ day.date }}</td>
-                            <td>{{ day.high }}f/{{ day.low }}f</td>
+                            <td>{{ day.high }}&deg;F / {{ day.low }}&deg;F</td>
                         </tr>
                         {% endfor %}
                     </tbody>

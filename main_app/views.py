@@ -105,8 +105,8 @@ def destination(request, destination_id):
         obj1 = daily_obj['data']
         daily = obj1[0]
         d.weekday = calendar.day_name[d.date.weekday()]
-        d.high = daily['temperatureHigh']
-        d.low = daily['temperatureLow']
+        d.high = round(daily['temperatureHigh'])
+        d.low = round(daily['temperatureLow'])
         
     #current weather api call
     current_weather_url = f"https://api.darksky.net/forecast/{DARKSKY_SECRET}/{lat},{lng}"
