@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<button><a href="{% url 'items' destination.id %}">Packing List</a> </button>
-<button><a href="{% url 'attractions' destination.id %}">Attractions</a></button>
-
+<button class="btn"><a href="{% url 'items' destination.id %}">Packing List</a> </button>
+<button class="btn"><a href="{% url 'attractions' destination.id %}">Attractions</a></button>
+<div class="card">
 <div class="col s12 m7">
     <h2 class="header">{{ destination.location }}</h2>
-    <h4> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F </h4>
+    <h4> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg; </h4>
     <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
                 {% if destination.completed == False %}
                 <p class="light pink-text"> Current trip</p>
                 {% else %}
                 <p class="light light-blue-text">Completed trip</p>
                 {% endif %}
+              </div>
     <div id="taco" class="card horizontal">
         <div class="card-image">
             <img src="{{ url_photo }}{{ obj.photo_reference }}" style="height: 100%; object-fit: cover;">
@@ -41,8 +42,8 @@
                 <br>
             </div>
             <div class="card-action">
-                <a href="{% url 'destination_update' destination.id %}" class="btn  cyan darken-2">Edit</a>
-                <a href="{% url 'destination_delete' destination.id %}" class="btn  cyan darken-2">Delete</a>
+                <a class="btn" href="{% url 'destination_update' destination.id %}" >Edit</a>
+                <a class="btn" href="{% url 'destination_delete' destination.id %}" >Delete</a>
             </div>
         </div>
     </div>

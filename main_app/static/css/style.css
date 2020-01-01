@@ -7,12 +7,15 @@
 
 body {
 	margin: 0;
-	background:#fff;
+  background-color: #115588;
+  background-image: linear-gradient(19deg, #115588 0%, #21e4b3 100%);
+  
 	font-family: 'roboto', sans-serif;
   font-weight: 800;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  color: rgb(7, 58, 78);
 }
 
 .container {
@@ -81,8 +84,8 @@ nav a:hover::before {
 }
 
 .card{
-  background-color: rgb(240, 243, 245,.87);
-  color:black;
+ font-family: 'roboto', sans-serif;
+ background-color: rgba(255, 255, 255, 0.72);
 }
 main {
   flex: 1 0 auto;
@@ -106,12 +109,6 @@ h1{
 .new{
   background-image:url('https://i.imgur.com/H9m8Neb.jpg');
 }
-.small{
-  background-color:#21e4b3;
-  color:white;
-  padding:5px; 
-
-}
 
 a{
   color:rgb(7, 58, 78);
@@ -122,3 +119,8 @@ a{
 table{
   background-color: #fff;
 }
+.card{
+font-family: 'Roboto', sans-serif;
+text-align: center;
+}
+

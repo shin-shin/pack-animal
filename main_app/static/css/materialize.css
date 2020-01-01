@@ -2225,7 +2225,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: roboto, monospace;
+  font-family: 'roboto', monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -2372,7 +2372,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
+  font-family: 'roboto', sans-serif;
   /* 1 */
   font-size: 100%;
   /* 1 */
@@ -4749,12 +4749,13 @@ small {
   transition: -webkit-box-shadow .25s;
   transition: box-shadow .25s;
   transition: box-shadow .25s, -webkit-box-shadow .25s;
-  border-radius: 2px;
+  border-radius: 10px;
 }
 
 .card .card-title {
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 300;
+  font-family: 'roboto' , sans-serif;
 }
 
 .card .card-title.activator {
@@ -4809,20 +4810,24 @@ small {
   height: 100%;
   max-height: none;
   overflow: visible;
+  border-radius: 10px;
 }
 
 .card.horizontal.small .card-image img, .card.horizontal.medium .card-image img, .card.horizontal.large .card-image img {
   height: 100%;
+  border-radius: 10px;
 }
 
 .card.horizontal .card-image {
   max-width: 50%;
+  border-radius: 10px;
 }
 
 .card.horizontal .card-image img {
-  border-radius: 2px 0 0 2px;
+  border-radius: 10px ;
   max-width: 100%;
   width: auto;
+
 }
 
 .card.horizontal .card-stacked {
@@ -4864,7 +4869,7 @@ small {
 
 .card .card-image img {
   display: block;
-  border-radius: 2px 2px 0 0;
+  border-radius: 10px;
   position: relative;
   left: 0;
   right: 0;
@@ -6217,9 +6222,9 @@ input[type=tel]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
 input[type=search]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #26a69a;
-  -webkit-box-shadow: 0 1px 0 0 #26a69a;
-          box-shadow: 0 1px 0 0 #26a69a;
+  border-bottom: 1px solid #21e4b3 ;
+  -webkit-box-shadow: 0 1px 0 0 #21e4b3;
+          box-shadow: 0 1px 0 0 #21e4b3;
 }
 
 input:not([type]):focus:not([readonly]) + label,
@@ -6235,7 +6240,7 @@ input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
 input[type=number]:not(.browser-default):focus:not([readonly]) + label,
 input[type=search]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #26a69a;
+  color: #21e4b3;
 }
 
 input:not([type]):focus.valid ~ label,
@@ -6577,7 +6582,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field .prefix.active {
-  color: #26a69a;
+  color: #21e4b3;
 }
 
 .input-field .prefix ~ input,
@@ -8714,7 +8719,7 @@ input[type=range]::-ms-thumb {
   -webkit-flex: 1 auto;
       -ms-flex: 1 auto;
           flex: 1 auto;
-  background-color: #26a69a;
+  background-color: #21e4b3;
   color: #fff;
   padding: 20px 22px;
   font-weight: 500;
@@ -8772,11 +8777,11 @@ input[type=range]::-ms-thumb {
 }
 
 .datepicker-table td.is-today {
-  color: #26a69a;
+  color: #21e4b3;
 }
 
 .datepicker-table td.is-selected {
-  background-color: #26a69a;
+  background-color: #21e4b3;
   color: #fff;
 }
 
@@ -8798,7 +8803,7 @@ input[type=range]::-ms-thumb {
 }
 
 .datepicker-day-button:focus {
-  background-color: rgba(43, 161, 150, 0.25);
+  background-color: #21e4b3;
 }
 
 /* Footer */
@@ -8820,7 +8825,7 @@ input[type=range]::-ms-thumb {
 .datepicker-clear,
 .datepicker-today,
 .datepicker-done {
-  color: #26a69a;
+  color:#21e4b3;
   padding: 0 1rem;
 }
 
@@ -8885,7 +8890,7 @@ input[type=range]::-ms-thumb {
   -webkit-flex: 1 auto;
       -ms-flex: 1 auto;
           flex: 1 auto;
-  background-color: #26a69a;
+  background-color:#21e4b3;
   padding: 10px;
   font-weight: 300;
 }
@@ -9006,7 +9011,7 @@ input[type=range]::-ms-thumb {
 }
 
 .timepicker-canvas line {
-  stroke: #26a69a;
+  stroke: #21e4b3;
   stroke-width: 4;
   stroke-linecap: round;
 }
@@ -9017,12 +9022,12 @@ input[type=range]::-ms-thumb {
 
 .timepicker-canvas-bearing {
   stroke: none;
-  fill: #26a69a;
+  fill: #21e4b3;
 }
 
 .timepicker-canvas-bg {
   stroke: none;
-  fill: #26a69a;
+  fill: #21e4b3;
 }
 
 /* Footer */
@@ -9044,7 +9049,7 @@ input[type=range]::-ms-thumb {
 }
 
 .timepicker-close {
-  color: #26a69a;
+  color:#21e4b3;
 }
 
 .timepicker-clear,

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<button class="small"><a href="{% url 'destination' destination.id %}">Back to Itinerary</a> </button>
-<button class="small"><a href="{% url 'items' destination.id %}">Packing List</a></button>
+<button class="btn"><a href="{% url 'destination' destination.id %}">Back to Itinerary</a> </button>
+<button class="btn"><a href="{% url 'items' destination.id %}">Packing List</a></button>
 <div class="card">
 <h1>Attractions in {{ destination.location }}</h1>
 <h5>Check out the most popular attractions in {{ destination.location }}!</h5>
