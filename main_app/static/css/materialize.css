@@ -3430,12 +3430,12 @@ table span.badge {
 .container {
   margin: 0 auto;
   max-width: 1280px;
-  width: 90%;
+  width: 100%;
 }
 
 @media only screen and (min-width: 601px) {
   .container {
-    width: 85%;
+    width: 100%;
   }
 }
 
@@ -4869,7 +4869,7 @@ small {
 
 .card .card-image img {
   display: block;
-  border-radius: 10px;
+  border-radius: 5px;
   position: relative;
   left: 0;
   right: 0;
@@ -4908,7 +4908,7 @@ small {
 
 .card .card-action {
   background-color: inherit;
-  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  border-top: 5px solid #157896;
   position: relative;
   padding: 16px 24px;
 }

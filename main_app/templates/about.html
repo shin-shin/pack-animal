@@ -1,7 +1,93 @@
-{% extends 'base.html' %}
-{% block content %}
-<body class="about">
-<h1>About PackAnimal</h1>
-<p>Lets have fun with this project!</p> 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% endblock %}
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>PackAnimal</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link href="{% static 'css/about.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places"></script>
+
+</head>
+
+<body class='white'>
+  <header>
+    <nav  role="navigation">
+      <div class="container">
+        <a href="/" class="brand-logo">PackAnimal</a>
+        <ul class="right hide-on-med-and-down light">
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'new_destination' %}">Add a Destination</a></li>
+          <li><a href="{% url 'dashboard' %}">My Destinations</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'new_destination' %}">Add a Destination</a></li>
+          <li><a href="{% url 'dashboard' %}">My Destinations</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Log In </a></li>
+          {% endif %}
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+  </header>
+  <main>
+<div class="container1">
+		<div class="about">
+			<div class="text">
+				<h1> About PackAnimal</h1>
+				<div class="line"></div>
+			</div>
+		</div>
+<div class="card">
+   <h3>The Problem</h3>
+   <p> You’ve got your suitcase open on your bed, your packing list scribbled on a notepad, the weather app open on your phone and your friends texting you the top attractions to hit on your upcoming trip. Outside of the more crucial aspects of trip planning - booking your flight, hotel and rental car - it can be a real hassle to keep track of everything else. </p>
+    
+    <h3>Our Solution</h3>
+    <p>We tie up all those loose ends in a single platform that houses everything you’ll need to make your next trip a success - from suggesting activities to providing up to date weather information and a home for your all-in-one packing list.</p>
+  </div>
+ 
+<div class="line2"></div>
+
+<section id="boxes">
+    <div class="container">
+      <div class="box">
+        <img src="">
+        <h3>Julia Galan</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+      </div>
+      <div class="box">
+        <img src="">
+        <h3>Matt Sartain</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+      </div>
+      <div class="box">
+        <img src="">
+        <h3>Irene Tokareva</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+      </div>
+    </div>
+  </section>
+  <footer class="page-footer ">
+      <div class="footer-copyright">
+        <div class="container">
+          Made by <a href="https://github.com/shin-shin/pack-animal">PackAnimal</a>
+        </div>
+      </div>
+    </footer>
