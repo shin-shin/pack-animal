@@ -101,8 +101,8 @@ def destination(request, destination_id):
         future_weather_url = f"https://api.darksky.net/forecast/{DARKSKY_SECRET}/{lat},{lng},{d.date}T04:00:00"
         fw = requests.get(future_weather_url)
         data3 = fw.json()
-        obj = data3['daily']
-        obj1 = obj['data']
+        daily_obj = data3['daily']
+        obj1 = daily_obj['data']
         daily = obj1[0]
         d.weekday = calendar.day_name[d.date.weekday()]
         d.high = daily['temperatureHigh']
