@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<button class="btn"><a href="{% url 'items' destination.id %}">Packing List</a> </button>
-<button class="btn"><a href="{% url 'attractions' destination.id %}">Attractions</a></button>
+<a class="btn" href="{% url 'items' destination.id %}">Packing List</a> 
+<a  class="btn"href="{% url 'attractions' destination.id %}">Attractions</a>
 <div class="card">
 <div class="col s12 m7">
     <h2 class="header">{{ destination.location }}</h2>
-    <h4> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
+    <h4 class="temp"> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
     <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
                 {% if destination.completed == False %}
                 <p class="light pink-text"> Current trip</p>

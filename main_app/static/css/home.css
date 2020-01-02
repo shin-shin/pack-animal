@@ -48,10 +48,11 @@
     justify-content: center;
     text-align: center;
     height: 100%;
+
   }
   
   .showcase h1 {
-    font-size: 4rem;
+    font-size: 3rem;
   }
   
   .showcase p {
