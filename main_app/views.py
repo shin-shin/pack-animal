@@ -51,6 +51,7 @@ def attractions(request, destination_id):
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
     destination = Destination.objects.get(id=destination_id)
+    days = Day.objects.filter(destination=destination_id)
     location = destination.location
     x = '+point+of+interest'
     request_url = url + 'query=' + location +  x + '&key=' + GOOGLE_API_KEY
@@ -65,10 +66,16 @@ def attractions(request, destination_id):
     context = {'location':location,
                'attractions': attractions,
                'photo': url_photo,
-               'destination': destination
+               'destination': destination,
+               'days': days
                }
     return render(request, "destinations/attractions.html", context)
 
+def attr_to_itin(request, destination_id, pk):
+    day = Day.objects.get(id=pk)
+    new_activity = Activity(name=request.POST.get('attr-name'), day=day)
+    new_activity.save()
+    return redirect('day', destination_id=destination_id, pk=pk)
 
 def dashboard(request):
     destinations = Destination.objects.filter(user=request.user)

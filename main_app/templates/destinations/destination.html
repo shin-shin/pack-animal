@@ -6,7 +6,7 @@
 <div class="card">
 <div class="col s12 m7">
     <h2 class="header">{{ destination.location }}</h2>
-    <h4> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg; </h4>
+    <h4> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
     <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
                 {% if destination.completed == False %}
                 <p class="light pink-text"> Current trip</p>
@@ -42,8 +42,13 @@
                 <br>
             </div>
             <div class="card-action">
+<<<<<<< HEAD
                 <a class="btn" href="{% url 'destination_update' destination.id %}" >Edit</a>
                 <a class="btn" href="{% url 'destination_delete' destination.id %}" >Delete</a>
+=======
+                <a href="{% url 'destination_update' destination.id %}" class="btn cyan darken-2">Edit</a>
+                <a href="{% url 'destination_delete' destination.id %}" class="btn cyan darken-2">Delete</a>
+>>>>>>> 42f31740e33f939094c7d81624de1c63f51e3504
             </div>
         </div>
     </div>
