@@ -6,7 +6,7 @@
 
 <h1>Attractions in {{ destination.location }}</h1>
 <h5>Check out the most popular attractions in {{ destination.location }}!</h5>
-<p>If you would like to visit some of attractions, just add them to your itinerary.</p> 
+<p>If you would like to visit some of attractions, just add them to your itinerary.</p>
 
 {% for attraction in attractions %}
 <div class="row">
@@ -18,10 +18,34 @@
             <div class="card-content">
                 <span class="card-title">{{ attraction.name }}</span>
                 <p>rating: {{ attraction.rating }}</p>
+                <a class='dropdown-trigger btn cyan darken-2 card-action' href='#' data-target='days-dropdown' style="height:auto">Add to Itinerary</a>
+
+                <!-- Dropdown Structure -->
+                <ul id='days-dropdown' class='dropdown-content'>
+                    {% for day in days %}
+                    <li><a href="#" class="cyan-text text-darken-2" onclick="document.getElementById('{{ day.id }}-{{ attraction.id }}').submit();">{{ day.date }}</a>
+                        <form action="{% url 'attr_to_itin' destination.id day.id %}" method="post"id="{{ day.id }}-{{ attraction.id }}" hidden >
+                            {% csrf_token %}
+                            <input type="text" class="cyan-text text-darken-2" name="attr-name" value="{{ attraction.name }}">
+                        </form>
+                        
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+<script>
 
+    options = {
+        "coverTrigger": false,
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems, options);
+    });
+
+</script>
 {% endblock %}
