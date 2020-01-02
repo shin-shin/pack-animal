@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.http import HttpResponse
 from datetime import date, timedelta, datetime
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Destination, Day, Activity, Item
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -46,7 +47,7 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
-
+@login_required 
 def attractions(request, destination_id):
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
@@ -71,12 +72,14 @@ def attractions(request, destination_id):
                }
     return render(request, "destinations/attractions.html", context)
 
+@login_required 
 def attr_to_itin(request, destination_id, pk):
     day = Day.objects.get(id=pk)
     new_activity = Activity(name=request.POST.get('attr-name'), day=day)
     new_activity.save()
     return redirect('day', destination_id=destination_id, pk=pk)
 
+@login_required 
 def dashboard(request):
     destinations = Destination.objects.filter(user=request.user)
     context = {
@@ -84,7 +87,7 @@ def dashboard(request):
     }
     return render(request, "destinations/dashboard.html", context)
 
-
+@login_required 
 def destination(request, destination_id):
     destination = Destination.objects.get(id=destination_id)
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
@@ -131,6 +134,13 @@ def destination(request, destination_id):
     }
     return render(request, "destinations/destination.html", context)
 
+@login_required    
+def destination_complete(request, pk):
+    destination = Destination.objects.get(id=pk)
+    destination.completed = not destination.completed
+    destination.save()
+    return redirect('destination', destination_id=pk)
+
 
 class ItemList(LoginRequiredMixin, ListView):
     model = Item
@@ -159,13 +169,15 @@ class ItemList(LoginRequiredMixin, ListView):
         context['destination'] = Destination.objects.get(
             id=self.kwargs['destination_id'])
         return context
-    
+
+@login_required     
 def delete_item(request, destination_id, pk):
     print("delete_item: ", destination_id, pk)
     item = Item.objects.get(id=pk)
     item.delete()
     return redirect('items', destination_id=destination_id)
-    
+
+@login_required     
 def discover(request):
     location = request.POST.get('location', '')
     print(f'location is {location}')
@@ -195,12 +207,12 @@ class DayDetail(LoginRequiredMixin, DetailView):
         context['activities'] = Activity.objects.filter(day_id=self.kwargs['pk'])
         return context
 
+@login_required 
 def delete_activity(request, destination_id, pk):
     # print("delete_activity: ", destination_id, pk)
     activity = Activity.objects.get(id=pk)
     activity.delete()
     return redirect('day', destination_id=destination_id, pk=activity.day.id)
-
 
 def signup(request):
     error_message = ''
@@ -217,7 +229,7 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-class DestinationCreate(CreateView):  # works
+class DestinationCreate(LoginRequiredMixin, CreateView):  # works
     model = Destination
     fields = ['location', 'start_date', 'end_date']
 
@@ -228,7 +240,7 @@ class DestinationCreate(CreateView):  # works
         return super().form_valid(form)
 
 
-class DestinationUpdate(UpdateView):  
+class DestinationUpdate(LoginRequiredMixin, UpdateView):  
     model = Destination
     fields = ['location', 'start_date', 'end_date']
 
@@ -239,6 +251,6 @@ class DestinationUpdate(UpdateView):
         return super().form_valid(form)
 
 
-class DestinationDelete(DeleteView):  # works
+class DestinationDelete(LoginRequiredMixin, DeleteView):  # works
     model = Destination
     success_url = '/destinations/'
