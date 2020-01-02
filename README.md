@@ -9,9 +9,9 @@ You’ve got your suitcase open on your bed, your packing list scribbled on a no
 We tie up all those loose ends in a single platform that houses everything you’ll need to make your next trip a success - from suggesting activities to providing up to date weather information and a home for your all-in-one packing list. 
 
 ## Who We Are
-* Irene Tokareva - GitHub manager, backend, documentation, DB
-* Julia Galan - frontend, wireframes, Trello, documentation
-* Mattew Sartain - backend, documentation, Design, DOM/JS
+* Irene Tokareva - GitHub manager, backend, documentation, DB  [Github](https://github.com/shin-shin)
+* Julia Galan - frontend, wireframes, Trello, documentation  [Github](https://github.com/julia-nichole)
+* Mattew Sartain - backend, documentation, Design, DOM/JS  [Github](https://github.com/Msartain)
  ## See Our Planning 
  ### [Trello](https://trello.com/b/grsPRzsL/packanimal)
 

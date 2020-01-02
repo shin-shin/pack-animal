@@ -70,7 +70,7 @@ nav a::before {
   content: '';
   display: block;
   height: 5px;
-  background-color: #444;
+  background-color: rgb(9, 86, 158);
 
   position: absolute;
   top: 0;
@@ -218,4 +218,11 @@ background-color: #21e4b3;
 border-radius: 5px;
 left:10%;
 box-shadow: 0px 5px 2px 0px rgba(0, 0, 0, 0.568);
+}
+.one{
+  padding: 30px;
+}
+.two{
+  text-align: left;
+  padding: 10px;
 }
