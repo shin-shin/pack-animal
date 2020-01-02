@@ -1,53 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>PackAnimal</title>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-  <link href="{% static 'css/about.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places"></script>
 
-</head>
-
-<body class='white'>
-  <header>
-    <nav  role="navigation">
-      <div class="container">
-        <a href="/" class="brand-logo">PackAnimal</a>
-        <ul class="right hide-on-med-and-down light">
-          <li><a href="{% url 'about' %}">About</a></li>
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'new_destination' %}">Add a Destination</a></li>
-          <li><a href="{% url 'dashboard' %}">My Destinations</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
-          {% else %}
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          <li><a href="{% url 'login' %}">Log In</a></li>
-          {% endif %}
-        </ul>
-
-        <ul id="nav-mobile" class="sidenav">
-          <li><a href="{% url 'about' %}">About</a></li>
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'new_destination' %}">Add a Destination</a></li>
-          <li><a href="{% url 'dashboard' %}">My Destinations</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
-          {% else %}
-          <li><a href="{% url 'login' %}">Log In </a></li>
-          {% endif %}
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      </div>
-    </nav>
-  </header>
-  <main>
+<body class="aboutbody">
+   
 <div class="container1">
 		<div class="about">
 			<div class="text">
@@ -64,30 +21,29 @@
   </div>
  
 <div class="line2"></div>
-
+<div class="card horizontal">
 <section id="boxes">
     <div class="container">
       <div class="box">
         <img src="">
         <h3>Julia Galan</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        <p>Frontend, Wireframes, Trello, Documentation 
+          </p>
+        <a  class='btn'href="https://github.com/julia-nichole"> More by Julia</a>
       </div>
       <div class="box">
         <img src="">
         <h3>Matt Sartain</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        <p> Backend, documentation, Design, DOM/JS</p>
+        <a  class='btn'href="https://github.com/Msartain"> More by Matt</a>
       </div>
       <div class="box">
         <img src="">
         <h3>Irene Tokareva</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        <p>GitHub manager, Backend, Documentation, DB</p>
+        <a  class='btn'href="https://github.com/shin-shin"> More by Irene</a>
       </div>
     </div>
   </section>
-  <footer class="page-footer ">
-      <div class="footer-copyright">
-        <div class="container">
-          Made by <a href="https://github.com/shin-shin/pack-animal">PackAnimal</a>
-        </div>
-      </div>
-    </footer>
+  </div>
+    {% endblock %}
