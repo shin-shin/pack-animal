@@ -24,7 +24,7 @@
     {% csrf_token %}
     {{ item_form.as_table }}
 
-    <input type="text" name="name" placeholder="What whould like to pack?">
+    <input type="text" name="name" placeholder="What whould like to pack?" required>
     <input type="submit" class="btn "a value="Add Item">
 </form>
 

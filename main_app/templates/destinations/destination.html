@@ -9,9 +9,13 @@
     <h4 class="temp"> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
     <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
                 {% if destination.completed == False %}
-                <p class="light pink-text"> Current trip</p>
+                <p class="light pink-text">Upcoming trip</p>
+                <a class="btn" href="{% url 'destination_complete' destination.id %}" >Trip complete?</a>
+
                 {% else %}
                 <p class="light light-blue-text">Completed trip</p>
+                <a class="btn" href="{% url 'destination_complete' destination.id %}" >Change into upcoming?</a>
+
                 {% endif %}
               </div>
     <div id="taco" class="card horizontal">
