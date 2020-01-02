@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'items' destination.id %}">Packing List</a> |
-<a href="{% url 'attractions' destination.id %}">Attractions</a>
+
+<button class="btn"><a href="{% url 'items' destination.id %}">Packing List</a> </button>
+<button class="btn"><a href="{% url 'attractions' destination.id %}">Attractions</a></button>
+<div class="card">
 <div class="col s12 m7">
     <h2 class="header">{{ destination.location }}</h2>
     <h4> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
@@ -11,14 +13,15 @@
                 {% else %}
                 <p class="light light-blue-text">Completed trip</p>
                 {% endif %}
-    <div class="card horizontal">
+              </div>
+    <div id="taco" class="card horizontal">
         <div class="card-image">
             <img src="{{ url_photo }}{{ obj.photo_reference }}" style="height: 100%; object-fit: cover;">
         </div>
         <div class="card-stacked">
             <div class="card-content">
                 
-                <table class="striped light">
+                <table class="highlight centered responsive">
                     <thead>
                         <tr>
                             <th>Day of the week</th>
@@ -39,8 +42,8 @@
                 <br>
             </div>
             <div class="card-action">
-                <a href="{% url 'destination_update' destination.id %}" class="btn cyan darken-2">Edit</a>
-                <a href="{% url 'destination_delete' destination.id %}" class="btn cyan darken-2">Delete</a>
+                <a class="btn" href="{% url 'destination_update' destination.id %}" >Edit</a>
+                <a class="btn" href="{% url 'destination_delete' destination.id %}" >Delete</a>
             </div>
         </div>
     </div>

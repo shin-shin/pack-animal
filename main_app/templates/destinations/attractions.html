@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<a href="{% url 'destination' destination.id %}">Back to Itinerary</a> |
-<a href="{% url 'items' destination.id %}">Packing List</a>
-
+<button class="btn"><a href="{% url 'destination' destination.id %}">Back to Itinerary</a> </button>
+<button class="btn"><a href="{% url 'items' destination.id %}">Packing List</a></button>
+<div class="card">
 <h1>Attractions in {{ destination.location }}</h1>
 <h5>Check out the most popular attractions in {{ destination.location }}!</h5>
 <p>If you would like to visit some of attractions, just add them to your itinerary.</p>
-
+</div>
 {% for attraction in attractions %}
 <div class="row">
     <div class="col s12 m4">

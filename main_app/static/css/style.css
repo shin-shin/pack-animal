@@ -7,12 +7,15 @@
 
 body {
 	margin: 0;
-	background:#fff;
+  background-color: #115588;
+  background-image: linear-gradient(19deg, #115588 0%, #21e4b3 100%);
+  
 	font-family: 'roboto', sans-serif;
   font-weight: 800;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  color: rgb(7, 58, 78);
 }
 
 .container {
@@ -20,21 +23,19 @@ body {
 	margin: 0 auto;
 }
 
-header {
-  background: rgba(13, 110, 139, 0.75);
+ body {
+  /* background-image: url('https://i.imgur.com/BtQAvUX.png'); */
+   background-size: cover;
+  background-repeat: no-repeat; 
 }
 
-header::after {
-  content: '';
-  display: table;
-  clear: both;
-}
 
 .brand-logo {
   float: left;
   padding: 10px 0;
-  color:white;
+  color:black;
 }
+
 
 nav {
   float: right;
@@ -55,14 +56,14 @@ nav li {
 }
 
 nav a {
-  color: #444;
+  color: rgb(68, 68, 68);
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px;
 }
 
 nav a:hover {
-  color: #000;
+  color: rgb(7, 58, 78);
 }
 
 nav a::before {
@@ -82,16 +83,139 @@ nav a:hover::before {
   width: 100%;
 }
 
-
+.card{
+ font-family: 'roboto', sans-serif;
+ background-color: rgba(255, 255, 255, 0.72);
+ text-align: center;
+}
 main {
   flex: 1 0 auto;
 }
 footer.page-footer {
   padding-top: 0;
   text-align: right;
-  background-color:rgba(13, 110, 139, 0.75)
-}
-.color{
-  background-color:rgba(13, 110, 139, 0.75);
+
 }
 
+.image{
+  background-image: url('https://i.imgur.com/gEZM6tK.jpg');
+}
+h1{
+  font-family: 'Roboto', sans-serif;
+  text-align:center;
+}
+.about{
+  background-image:url('https://i.imgur.com/iimHEQC.jpg');
+}
+.new{
+  background-image:url('https://i.imgur.com/H9m8Neb.jpg');
+}
+
+a{
+  color:rgb(7, 58, 78);
+}
+.dest{
+  background-image: url('https://i.imgur.com/iroTG3R.png');
+}
+table{
+  background-color: #fff;
+}
+
+
+
+.container1{
+  width:100%;
+  height:auto;
+  display: flex;
+  align-items: flex-start;
+ flex-wrap: wrap;
+ margin:0;
+ padding:0;
+}
+.about{
+  width:100%;
+  height: 600px;
+  background-image: url(https://i.imgur.com/iimHEQC.jpg); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.text{
+  font-size: 30px;
+  color:#fff;
+  font-family: 'roboto', sans-serif;
+  text-shadow: 0px 10px 10px #000;
+}
+.line{
+  width:580px;
+  height: 8px;
+  background-color: #21e4b3;
+  
+
+  border-radius: 5px;
+  left:10%;
+  box-shadow: 0px 15px 12px 0px #000;
+}
+.content{
+  width:100%;
+  height:auto;
+  background-color: #fff;
+  font-size: 23px;
+  font-family:  'roboto', sans-serif;
+  color:#333;
+  line-height: 30px;
+  text-align: center;
+}
+
+
+footer{
+  width:100%;
+  height: auto;
+  background-color: #157896;
+  color: #fff;
+  font-size: 23px;
+  text-align: center;
+  line-height: 50px;
+font-family: 'roboto', sans-serif;
+}#boxes{
+  
+
+margin-top:20px;
+}
+
+#boxes .box{
+font-family: 'roboto', sans-serif;
+float:right;
+position: relative;
+text-align: center;
+width:31%;
+padding:0px 70px 20px 70px;
+
+}
+
+#boxes .box img{
+width:200px;
+}
+
+@media(max-width: 768px){
+ #boxes .box {
+  float:none;
+  text-align:center;
+  width:100%;
+}
+}
+.white{
+background-color: #fff;
+}
+.line2{
+width:8000px;
+height: 8px;
+background-color: #21e4b3;
+border-radius: 5px;
+left:10%;
+box-shadow: 0px 5px 2px 0px rgba(0, 0, 0, 0.568);
+}

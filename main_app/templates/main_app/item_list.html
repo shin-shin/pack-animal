@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'destination' destination.id %}">Back to Itinerary</a> |
-<a href="{% url 'attractions' destination.id %}">Attractions</a>
-
-<h1>Packing list for {{ destination.location }}</h1>
-<table>
+<a class="btn" href="{% url 'destination' destination.id %}">Back to Itinerary</a> |
+<a  class='btn' href="{% url 'attractions' destination.id %}">Attractions</a>
+<div class="card">
+<h1>Packing List for {{ destination.location }}</h1>
+<table class="responsive highlight centered ">
     {% for item in items %}
     <tr>
         <td><input type="checkbox"></td>
@@ -25,8 +25,8 @@
     {{ item_form.as_table }}
 
     <input type="text" name="name" placeholder="What whould like to pack?">
-    <input type="submit" class="btn  cyan darken-2" value="Add Item">
+    <input type="submit" class="btn "a value="Add Item">
 </form>
 
-
+</div>
 {% endblock %}
