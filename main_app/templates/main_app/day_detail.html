@@ -28,7 +28,7 @@
     {% csrf_token %}
     {{ activity_form.as_table }}
     
-    <input type="text" name="name">
+    <input type="text" name="name" required>
     <input type="submit" class="btn" value="Add Activity">
 </form>
 {% endblock %}
