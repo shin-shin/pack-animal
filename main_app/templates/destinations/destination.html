@@ -4,20 +4,21 @@
 <a class="btn" href="{% url 'items' destination.id %}">Packing List</a> 
 <a  class="btn"href="{% url 'attractions' destination.id %}">Attractions</a>
 <div class="card">
-<div class="col s12 m7">
-    <h2 class="header">{{ destination.location }}</h2>
-    <h4 class="temp"> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
-    <h5>from {{ destination.start_date }} to {{ destination.end_date }}</h5>
+<div class="col l12 l7">
+    <h2  class ="location" >{{ destination.location }}</h2>
+    <h5 class="temp"> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
+    <h4 >from {{ destination.start_date }} to {{ destination.end_date }}</h5>
                 {% if destination.completed == False %}
                 <p class="light pink-text">Upcoming trip</p>
-                <a class="btn" href="{% url 'destination_complete' destination.id %}" >Trip complete?</a>
+                <a  id="trip" class="btn" href="{% url 'destination_complete' destination.id %}" >Trip complete?</a>
 
                 {% else %}
                 <p class="light light-blue-text">Completed trip</p>
-                <a class="btn" href="{% url 'destination_complete' destination.id %}" >Change into upcoming?</a>
+                <a id="trip" class="btn" href="{% url 'destination_complete' destination.id %}" >Change into upcoming?</a>
 
                 {% endif %}
-              </div>
+
+              
     <div id="taco" class="card horizontal">
         <div class="card-image">
             <img src="{{ url_photo }}{{ obj.photo_reference }}" style="height: 100%; object-fit: cover;">
@@ -51,6 +52,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock %}

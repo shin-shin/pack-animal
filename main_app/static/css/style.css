@@ -180,20 +180,35 @@ font-family:'Raleway', sans-serif ;
 }
 .btn {
   display: inline-block;
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   transition-property: transform;
   -webkit-tap-highlight-color: transparent;
   transform: translateZ(0);
   box-shadow: 0 0 1px transparent;
+  background-color: #157896
 }
 .btn:hover {
-  transform: translateY(-5px);
+  background-color: #126680;
+  transform: translateY(-1px);
 }
 .left img{
   height: 65px;
   padding:10px;
 }
-.temp{
-  float:right;
-  padding-right: 10px;
+.location{
+  float:left;
+  padding-left: 20px;
+}
+#trip{
+ margin-left: 30%;
+margin-bottom: 20px;
+}
+
+#right{
+  margin-left: 45%;
+  margin-bottom: 2%;
+}
+#right1{
+  margin-left: 65%;
+  margin-bottom: 1%;
 }
