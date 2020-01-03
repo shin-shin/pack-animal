@@ -68,7 +68,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'main_app.context_processors.global_settings',
             ],
         },
     },
@@ -130,5 +129,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/about/'
 LOGOUT_REDIRECT_URL = '/'
 
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())

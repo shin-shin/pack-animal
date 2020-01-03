@@ -41,7 +41,10 @@ def get_attractions(request):
 
 
 def home(request):
-    return render(request, "home.html")
+    context = {
+        'GOOGLE_API_KEY': GOOGLE_API_KEY
+    }
+    return render(request, "home.html", context)
 
 
 def about(request):
@@ -238,7 +241,11 @@ class DestinationCreate(LoginRequiredMixin, CreateView):  # works
         form.instance.user = self.request.user
         # Let the CreateView do its job as usual
         return super().form_valid(form)
-
+    
+    def get_context_data(self, **kwargs):
+        context = super(DestinationCreate, self).get_context_data(**kwargs)
+        context['GOOGLE_API_KEY'] = GOOGLE_API_KEY
+        return context
 
 class DestinationUpdate(LoginRequiredMixin, UpdateView):  
     model = Destination
