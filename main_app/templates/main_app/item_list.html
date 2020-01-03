@@ -5,19 +5,30 @@
 <div class="card">
 <h1>Packing List for {{ destination.location }}</h1>
 <table class="responsive highlight centered ">
-    {% for item in items %}
+    {% if items %}
+    {% for item in unchecked %}
     <tr>
-        <td><input type="checkbox"></td>
         <td>
-            <p>{{ item.name }} </p>
+            <a href="{% url 'item_check' destination.id item.id %}" class="">{{ item.name }}</a>
         </td>
         <td><a href="{% url 'item_delete' destination.id item.id %}" class="btn btn-small pink">Delete</a></td>
-        {% empty %}
+    </tr>
+    {% endfor %}
+    {% for item in checked %}
+    <tr>
+        <td>
+            <a href="{% url 'item_check' destination.id item.id %}" class="grey-text" style="text-decoration: line-through 1px">{{ item.name }}</a>
+        </td>
+        <td><a href="{% url 'item_delete' destination.id item.id %}" class="btn btn-small pink">Delete</a></td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
         <td>
             <p>No packing list items yet</p>
         </td>
     </tr>
-    {% endfor %}
+    {% endif %}
 </table>
 <br><br>
 <form action="" method="post">

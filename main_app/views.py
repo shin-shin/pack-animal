@@ -173,6 +173,8 @@ class ItemList(LoginRequiredMixin, ListView):
         context = super(ItemList, self).get_context_data(**kwargs)
         context['destination'] = Destination.objects.get(
             id=self.kwargs['destination_id'])
+        context['checked'] = Item.objects.filter(destination=self.kwargs['destination_id'], is_checked=True)
+        context['unchecked'] = Item.objects.filter(destination=self.kwargs['destination_id'], is_checked=False)
         return context
 
 @login_required     
@@ -180,6 +182,13 @@ def delete_item(request, destination_id, pk):
     print("delete_item: ", destination_id, pk)
     item = Item.objects.get(id=pk)
     item.delete()
+    return redirect('items', destination_id=destination_id)
+
+@login_required     
+def check_item(request, destination_id, pk):
+    item = Item.objects.get(id=pk)
+    item.is_checked = not item.is_checked
+    item.save()
     return redirect('items', destination_id=destination_id)
 
 @login_required     
