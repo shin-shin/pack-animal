@@ -2,66 +2,92 @@
 {% block content %}
 
 <body class='image'>
+ <div class="card">
+<h1>My Destinations</h1>
+{% if any_trips %}
+{% if upcoming %}
+<table class="centered highlight responsive">
+    <thead>
+      <tr>
+       <th> Destination </th>
+       <th>Start date</th>
+       <th>End date </th>
+       <th>Completed</th>
+       <th> </th>
+       <th> </th>
+       
 
-  <h1>My Destinations</h1>
-  {% if any_trips %}
-  {% if upcoming %}
-  <h2>Upcoming trips</h2>
-  {% for destination in upcoming %}
-  <a href="{% url 'destination' destination.id %}">
-    <div class="row">
-      <div class="col s12 ">
-        <div class="card ">
-          <span class="card-title">{{ destination.location }}</span>
-          <div class="card-content">
-            <p>Start Date: {{ destination.start_date }}</p>
-            <p>End Date: {{ destination.end_date }}</p>
-            <p>Completed: {{ destination.completed }}</p>
-            <br>
-            <div class="card-action">
-              <a class="btn" href="{% url 'destination_update' destination.id %}">Edit</a>
-              <a class="btn" href="{% url 'destination_delete' destination.id %}">Delete</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </tr>
+</thead>
+<tbody>
+{% for destination in upcoming %}
+
+
+<tr>
+  <td>
+    <a href="{% url 'destination' destination.id %}">
+              <span>{{ destination.location }}</span>
+            </a>
+            </td>
+         
+            <td>Start Date: {{ destination.start_date }}</td>
+            <td>End Date: {{ destination.end_date }}</td>
+            <td>Completed: {{ destination.completed }}</td>
+         
+           <td><a class="btn" href="{% url 'destination_update' destination.id %}">Edit</a> </td>
+           <td> <a  class="btn" href="{% url 'destination_delete' destination.id %}">Delete</a> </td>
+</tr>  
+{% endfor %}
+{% endif %}
+ 
+</tbody>
+</table>
+
+{% if completed %}
+<table class="centered highlight responsive">
+ <thead>
+   <tr>
+
+      <th> Destination </th>
+      <th>Start date</th>
+      <th>End date </th>
+      <th>Completed</th>
+      <th> </th>
+      <th> </th> 
+    </tr>
+  </thead>
+
+<h2>Completed trips</h2>
+<tbody>
+{% for destination in completed %}
+<tr>
+  <td>
+
+
+<a href="{% url 'destination' destination.id %}">
+  
+        <span >{{ destination.location }}</span> </td>
+      
+          <td>Start Date: {{ destination.start_date }}</td>
+          <td>End Date: {{ destination.end_date }}</td>
+          <td>Completed: {{ destination.completed }}</td>
+          <br>
+          
+           <td><a class="btn" href="{% url 'destination_update' destination.id %}">Edit</a></td>
+           <td> <a class="btn" href="{% url 'destination_delete' destination.id %}">Delete</a></td>
+        
+</tr>
+{% endfor %}
+</td>
+</tr>
   </a>
-  {% endfor %}
-  {% endif %}
-  {% if completed %}
-  <h2>Completed trips</h2>
-  {% for destination in completed %}
-  <a href="{% url 'destination' destination.id %}">
-    <div class="row">
-      <div class="col s12 ">
-        <div class="card ">
-          <span class="card-title">{{ destination.location }}</span>
-          <div class="card-content">
-            <p>Start Date: {{ destination.start_date }}</p>
-            <p>End Date: {{ destination.end_date }}</p>
-            <p>Completed: {{ destination.completed }}</p>
-            <br>
-            <div class="card-action">
-              <a class="btn" href="{% url 'destination_update' destination.id %}">Edit</a>
-              <a class="btn" href="{% url 'destination_delete' destination.id %}">Delete</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </a>
-  {% endfor %}
   {% endif %}
   {% else %}
-  <div class="row">
-    <div class="card ">
-      <div class="card-content">
-        <p>To see a list of your destinations, start by adding a new destination.</p>
-      </div>
-    </div>
-  </div>
-
+  
+        <p style="padding-bottom:10px;"> To see a list of your destinations, start by adding a new destination.</p>
+   
   {% endif %}
-
+ </tbody>
+</table>
+</div>
   {% endblock %}

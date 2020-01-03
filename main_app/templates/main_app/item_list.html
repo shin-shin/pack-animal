@@ -2,7 +2,7 @@
 {% block content %}
 <a class="btn" href="{% url 'destination' destination.id %}">Back to Itinerary</a> |
 <a  class='btn' href="{% url 'attractions' destination.id %}">Attractions</a>
-<div class="card">
+<div class="card" style="padding:10px 40px;">
 <h1>Packing List for {{ destination.location }}</h1>
 <p>Click on the item to mark it as packed.</p>
 <table class="responsive highlight centered ">
@@ -10,7 +10,7 @@
     {% for item in unchecked %}
     <tr>
         <td>
-            <a href="{% url 'item_check' destination.id item.id %}" class="">{{ item.name }}</a>
+            <a href="{% url 'item_check' destination.id item.id %}" class="text">{{ item.name }}</a>
         </td>
         <td><a href="{% url 'item_delete' destination.id item.id %}" class="btn btn-small pink">Delete</a></td>
     </tr>
@@ -37,7 +37,7 @@
     {{ item_form.as_table }}
 
     <input type="text" name="name" placeholder="What whould like to pack?" required>
-    <input type="submit" class="btn "a value="Add Item">
+    <input id="right" type="submit" class="btn "a value="Add Item">
 </form>
 
 </div>

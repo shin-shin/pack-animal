@@ -8,19 +8,22 @@
   <title>PackAnimal</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places"></script>
 
 </head>
 
 <body>
   <header>
-    <nav  role="navigation">
+    <nav  class="nav" role="navigation">
       <div class="container">
-        <a href="/" class="brand-logo">PackAnimal</a>
+        <a href="/" class="left"><img src="https://i.imgur.com/WBN7ILg.png"> </a>
+        <a href="/" class="logo ">PackAnimal</a>
+        
         <ul class="right hide-on-med-and-down light">
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
