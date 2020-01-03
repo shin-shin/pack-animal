@@ -2,8 +2,9 @@
 {% block content %}
 
 <h1> Discover attractions in {{location}}</h1>
-{% for attraction in attractions %}
+{% if attractions %}
 <div class="row">
+    {% for attraction in attractions %}
     <div class="col s12 m4">
         <div class="card medium">
             <div class="card-image">
@@ -15,10 +16,25 @@
             </div>
         </div>
     </div>
-
-    {% empty %}
-    <h1> Enter destinations to see popular attractions</h1>
     {% endfor %}
 </div>
+<div class="row">
+    <div class="card">
+        <p>If you would like to visit {{ location }} please
+            {% if user.is_authenticated %}
+            <a href="{% url 'new_destination' %}" class="pink-text">add a new destination</a> for it.
+            {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a> or
+            <a href="{% url 'login' %}">Log In </a>
+            to add {{ location }} to your destinations
+            {% endif %}
+        </p>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <h4> Enter destinations to see popular attractions</h4>
+</div>
+{% endif %}
 
 {% endblock %}
