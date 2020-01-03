@@ -10,7 +10,6 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Destination, Day, Activity, Item
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ItemForm, ActivityForm
-from packanimal.settings import GOOGLE_API_KEY, DARKSKY_SECRET
 
 import os
 import calendar
@@ -18,7 +17,7 @@ import requests, json
 
 
 def get_attractions(request):
-
+    GOOGLE_API_KEY = os.environ['GOOGLE_PLACES']
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
     location = request.POST.get('location','')
@@ -41,10 +40,8 @@ def get_attractions(request):
 
 
 def home(request):
-    context = {
-        'GOOGLE_API_KEY': GOOGLE_API_KEY
-    }
-    return render(request, "home.html", context)
+    GOOGLE_API_KEY = os.environ['GOOGLE_PLACES']
+    return render(request, "home.html", {'GOOGLE_API_KEY': GOOGLE_API_KEY})
 
 
 def about(request):
@@ -52,6 +49,8 @@ def about(request):
 
 @login_required 
 def attractions(request, destination_id):
+    GOOGLE_API_KEY = os.environ['GOOGLE_PLACES']
+
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
     destination = Destination.objects.get(id=destination_id)
@@ -92,6 +91,9 @@ def dashboard(request):
 
 @login_required 
 def destination(request, destination_id):
+    GOOGLE_API_KEY = os.environ['GOOGLE_PLACES']
+    DARKSKY_SECRET = os.environ['DARKSKY_SECRET']
+
     destination = Destination.objects.get(id=destination_id)
     url = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     url_photo = "https://maps.googleapis.com/maps/api/place/photo?" + "maxwidth=400" + "&key=" + GOOGLE_API_KEY + "&photoreference="
@@ -243,6 +245,8 @@ class DestinationCreate(LoginRequiredMixin, CreateView):  # works
         return super().form_valid(form)
     
     def get_context_data(self, **kwargs):
+        GOOGLE_API_KEY = os.environ['GOOGLE_PLACES']
+
         context = super(DestinationCreate, self).get_context_data(**kwargs)
         context['GOOGLE_API_KEY'] = GOOGLE_API_KEY
         return context
