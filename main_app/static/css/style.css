@@ -142,10 +142,10 @@ table{
 }
 
 .text{
-  font-size: 30px;
-  color:#fff;
+  font-size: 16px;
+  color:#157896;
   font-family: 'Raleway', sans-serif;
-  text-shadow: 0px 10px 10px #000;
+  
 }
 
 .content{
@@ -154,7 +154,7 @@ table{
   background-color: #fff;
   font-size: 23px;
   font-family: 'Raleway', sans-serif ;
-  color:#333;
+  color:#157896;
   line-height: 30px;
   text-align: center;
 }
@@ -200,7 +200,7 @@ font-family:'Raleway', sans-serif ;
   padding-left: 20px;
 }
 #trip{
- margin-left: 30%;
+ margin-left: 54%;
 margin-bottom: 20px;
 }
 
@@ -211,4 +211,8 @@ margin-bottom: 20px;
 #right1{
   margin-left: 65%;
   margin-bottom: 1%;
+}
+@media only screen and (max-width: 800px) {
+  #trip{  margin-left: 2%;
+  }
 }

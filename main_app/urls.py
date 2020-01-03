@@ -10,6 +10,7 @@ urlpatterns = [
     path('new-destination/', views.DestinationCreate.as_view(), name='new_destination'),
     path('destinations/<int:destination_id>/packing/', views.ItemList.as_view(), name='items'),
     path('destinations/<int:destination_id>/packing/<int:pk>/delete/', views.delete_item, name='item_delete'),
+    path('destinations/<int:destination_id>/packing/<int:pk>/check/', views.check_item, name='item_check'),
 
     path('destinations/<int:pk>/update/', views.DestinationUpdate.as_view(), name='destination_update'),
     path('destinations/<int:pk>/delete/', views.DestinationDelete.as_view(), name='destination_delete'),

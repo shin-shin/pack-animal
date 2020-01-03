@@ -1,6 +1,6 @@
-# PackAnimal
+# [PackAnimal](https://packanimal.herokuapp.com/)
 ![Image description](https://i.imgur.com/uvPqGK9.jpg)
-![Image description](https://i.imgur.com/8SDTlOZ.jpg)
+![Image description](https://i.imgur.com/0CJ5nfF.jpg)
 ## What We Do
 ### The Problem
 You’ve got your suitcase open on your bed, your packing list scribbled on a notepad, the weather app open on your phone and your friends texting you the top attractions to hit on your upcoming trip. Outside of the more crucial aspects of trip planning - booking your flight, hotel and rental car - it can be a real hassle to keep track of everything else. 

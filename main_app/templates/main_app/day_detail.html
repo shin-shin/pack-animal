@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'destination' day.destination_id %}">Back to Destination</a>
+<a class="btn" href="{% url 'destination' day.destination_id %}">Back to Destination</a>
 
 <h1>{{ day.destination.location }}</h1>
 <h4>{{ weekday }} - {{ day.date }}</h4>
