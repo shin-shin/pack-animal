@@ -83,9 +83,13 @@ def attr_to_itin(request, destination_id, pk):
 
 @login_required 
 def dashboard(request):
-    destinations = Destination.objects.filter(user=request.user)
+    completed_trips = Destination.objects.filter(user=request.user, completed=True)
+    upcoming_trips = Destination.objects.filter(user=request.user, completed=False)
+    any_trips = (len(completed_trips) + len(upcoming_trips) ) > 0
     context = {
-        'destinations': destinations
+        'completed': completed_trips,
+        'upcoming': upcoming_trips,
+        'any_trips': any_trips
     }
     return render(request, "destinations/dashboard.html", context)
 
