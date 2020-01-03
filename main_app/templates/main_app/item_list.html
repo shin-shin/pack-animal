@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<a class="btn" href="{% url 'destination' destination.id %}">Back to Itinerary</a> |
+<a class="btn" href="{% url 'destination' destination.id %}">Back to Itinerary</a>
 <a  class='btn' href="{% url 'attractions' destination.id %}">Attractions</a>
 <div class="card" style="padding:10px 40px;">
 <h1>Packing List for {{ destination.location }}</h1>

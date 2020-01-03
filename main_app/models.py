@@ -2,8 +2,8 @@ from django.db import models
 from django.urls import reverse
 from datetime import date, timedelta
 from django.contrib.auth.models import User
-from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.dispatch import receiver #import @receiver decorator, to connect signal with function
+from django.db.models.signals import post_save #module defines a set of signals sent by the model system
 
 import calendar
 # Create your models here.
@@ -59,7 +59,7 @@ class Item(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-@receiver(post_save, sender=Destination)
+@receiver(post_save, sender=Destination) # post_save signal is sent at the end of the save() method
 def post_save_destination(sender,instance,created, **kwargs):
     print (f'post_save_destination is called')
     if created:

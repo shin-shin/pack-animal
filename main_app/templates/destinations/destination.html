@@ -1,58 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<a class="btn" href="{% url 'items' destination.id %}">Packing List</a> 
-<a  class="btn"href="{% url 'attractions' destination.id %}">Attractions</a>
+<a class="btn" href="{% url 'items' destination.id %}">Packing List</a>
+<a class="btn" href="{% url 'attractions' destination.id %}">Attractions</a>
 <div class="card">
-<div class="col l12 l7">
-    <h2  class ="location" >{{ destination.location }}</h2>
-    <h5 class="temp"> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h4>
-    <h4 >from {{ destination.start_date }} to {{ destination.end_date }}</h5>
+    <div class="col l12 l7">
+        <div style="padding: 20px; display: flex; flex-wrap: wrap; ">
+            <div style="width: 50%;">
+                <h2 class="location">{{ destination.location }}</h2>
+            </div>
+            
+            <div style="width: 50%;">
+                <h4>from {{ destination.start_date }} to {{ destination.end_date }}</h4>
+                <h5 class="temp"> Current temperature: {{ currently.temperature|floatformat:"0" }}&deg;F</h5>
+
+            </div>
+            <div style="width: 100%;">
                 {% if destination.completed == False %}
-                <p class="light pink-text">Upcoming trip</p>
-                <a  id="trip" class="btn" href="{% url 'destination_complete' destination.id %}" >Trip complete?</a>
+                <p class="light pink-text">Upcoming trip
+                    <a id="trip" class="btn" href="{% url 'destination_complete' destination.id %}">Trip complete?</a>
+                </p>
 
                 {% else %}
-                <p class="light light-blue-text">Completed trip</p>
-                <a id="trip" class="btn" href="{% url 'destination_complete' destination.id %}" >Change into upcoming?</a>
+                <p class="light light-blue-text">Completed trip
+                    <a class="btn" href="{% url 'destination_complete' destination.id %}">Change into upcoming?</a></p>
 
                 {% endif %}
-
-              
-    <div id="taco" class="card horizontal">
-        <div class="card-image">
-            <img src="{{ url_photo }}{{ obj.photo_reference }}" style="height: 100%; object-fit: cover;">
-        </div>
-        <div class="card-stacked">
-            <div class="card-content">
-                
-                <table class="highlight centered responsive">
-                    <thead>
-                        <tr>
-                            <th>Day of the week</th>
-                            <th>Date</th>
-                            <th>Weather (high/low)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for day in days %}
-                        <tr>
-                            <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
-                            <td>{{ day.date }}</td>
-                            <td>{{ day.high }}&deg;F / {{ day.low }}&deg;F</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <br>
             </div>
-            <div class="card-action">
-                <a class="btn" href="{% url 'destination_update' destination.id %}" >Edit</a>
-                <a class="btn" href="{% url 'destination_delete' destination.id %}" >Delete</a>
+        </div>
+        <div id="taco" class="card horizontal">
+            <div class="card-image">
+                <img src="{{ url_photo }}{{ obj.photo_reference }}" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+
+                    <table class="highlight centered responsive">
+                        <thead>
+                            <tr>
+                                <th>Day of the week</th>
+                                <th>Date</th>
+                                <th>Weather (high/low)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for day in days %}
+                            <tr>
+                                <td><a href="{% url 'day' destination.id day.id %}">{{ day.weekday }}</a></td>
+                                <td>{{ day.date }}</td>
+                                <td>{{ day.high }}&deg;F / {{ day.low }}&deg;F</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+                <div class="card-action">
+                    <a class="btn" href="{% url 'destination_update' destination.id %}">Edit</a>
+                    <a class="btn" href="{% url 'destination_delete' destination.id %}">Delete</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock %}
