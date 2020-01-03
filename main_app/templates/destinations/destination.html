@@ -18,7 +18,7 @@
             <div style="width: 100%;">
                 {% if destination.completed == False %}
                 <p class="light pink-text">Upcoming trip
-                    <a id="trip" class="btn" href="{% url 'destination_complete' destination.id %}">Trip complete?</a>
+                    <a class="btn" href="{% url 'destination_complete' destination.id %}">Trip complete?</a>
                 </p>
 
                 {% else %}
