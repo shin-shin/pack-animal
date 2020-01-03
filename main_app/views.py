@@ -179,9 +179,9 @@ def delete_item(request, destination_id, pk):
 
 @login_required     
 def check_item(request, destination_id, pk):
-    destination = Destination.objects.get(id=pk)
-    destination.completed = not destination.completed
-    destination.save()
+    item = Item.objects.get(id=pk)
+    item.is_checked = not destination.is_checked
+    item.save()
     return redirect('destination', destination_id=pk)
 
 @login_required     
