@@ -178,6 +178,13 @@ def delete_item(request, destination_id, pk):
     return redirect('items', destination_id=destination_id)
 
 @login_required     
+def check_item(request, destination_id, pk):
+    destination = Destination.objects.get(id=pk)
+    destination.completed = not destination.completed
+    destination.save()
+    return redirect('destination', destination_id=pk)
+
+@login_required     
 def discover(request):
     location = request.POST.get('location', '')
     print(f'location is {location}')
