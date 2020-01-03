@@ -7,9 +7,8 @@
 <table class="responsive highlight centered ">
     {% for item in items %}
     <tr>
-        <td><input type="checkbox"></td>
         <td>
-            <p>{{ item.name }} </p>
+            <a href="{% url 'item_check' destination.id item.id %}" class="cyan-text text-darken-2">{{ item.name }}</a>
         </td>
         <td><a href="{% url 'item_delete' destination.id item.id %}" class="btn btn-small pink">Delete</a></td>
         {% empty %}

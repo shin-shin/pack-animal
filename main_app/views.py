@@ -180,9 +180,9 @@ def delete_item(request, destination_id, pk):
 @login_required     
 def check_item(request, destination_id, pk):
     item = Item.objects.get(id=pk)
-    item.is_checked = not destination.is_checked
+    item.is_checked = not item.is_checked
     item.save()
-    return redirect('destination', destination_id=pk)
+    return redirect('items', destination_id=destination_id)
 
 @login_required     
 def discover(request):
