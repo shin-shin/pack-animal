@@ -168,6 +168,8 @@ class ItemList(LoginRequiredMixin, ListView):
         context = super(ItemList, self).get_context_data(**kwargs)
         context['destination'] = Destination.objects.get(
             id=self.kwargs['destination_id'])
+        context['checked'] = Item.objects.filter(destination=self.kwargs['destination_id'], is_checked=True)
+        context['unchecked'] = Item.objects.filter(destination=self.kwargs['destination_id'], is_checked=False)
         return context
 
 @login_required     
