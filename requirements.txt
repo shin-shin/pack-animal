@@ -22,7 +22,7 @@ jmespath==0.9.4
 lazy-object-proxy==1.4.1
 MarkupSafe==1.1.1
 mccabe==0.6.1
-pipenv==2018.11.26
+pipenv==2022.1.8
 psycopg2==2.8.4
 psycopg2-binary==2.8.4
 pycodestyle==2.5.0
